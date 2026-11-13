@@ -411,32 +411,32 @@ const CATEGORIES = [
   { id: 'voices',   label: 'Voices',   color: '#34D399', icons: ['🎤','🎙️','🗣️','😤','🤖'] },
 ];
 
-// Sound spec: { id, cat, name, emoji, synth fn, accessory, anim }
+// Sound spec: { id, cat, name, emoji, synth fn, file, accessory, anim }
 const SOUNDS = [
   /* ---- BEATS ---- */
-  { id:'b1', cat:'beats',    name:'Disco Kick',   emoji:'🥁', accessory:'cap',       anim:'beat',    synth:'kickDisco'   },
-  { id:'b2', cat:'beats',    name:'Funky Snare',  emoji:'🔊', accessory:'sunglasses',anim:'beat',    synth:'snareFunky'  },
-  { id:'b3', cat:'beats',    name:'Hi-Hat Groove',emoji:'💥', accessory:'cap2',      anim:'beat',    synth:'hihat'       },
-  { id:'b4', cat:'beats',    name:'Metal Blast',  emoji:'⚡', accessory:'mask',      anim:'beat',    synth:'metalBlast'  },
-  { id:'b5', cat:'beats',    name:'Perc Cowbell', emoji:'🎺', accessory:'headband',  anim:'beat',    synth:'cowbell'     },
+  { id:'b1', cat:'beats',    name:'Disco Kick',   emoji:'🥁', file:'b1_kick',       accessory:'cap',       anim:'beat',    synth:'kickDisco'   },
+  { id:'b2', cat:'beats',    name:'Funky Snare',  emoji:'🔊', file:'b2_snare',      accessory:'sunglasses',anim:'beat',    synth:'snareFunky'  },
+  { id:'b3', cat:'beats',    name:'Hi-Hat Groove',emoji:'💥', file:'b3_hihat',      accessory:'cap2',      anim:'beat',    synth:'hihat'       },
+  { id:'b4', cat:'beats',    name:'Metal Blast',  emoji:'⚡', file:'b4_metal_blast',accessory:'mask',      anim:'beat',    synth:'metalBlast'  },
+  { id:'b5', cat:'beats',    name:'Perc Cowbell', emoji:'🎺', file:'b5_cowbell',    accessory:'headband',  anim:'beat',    synth:'cowbell'     },
   /* ---- EFFECTS / GUITAR ---- */
-  { id:'e1', cat:'effects',  name:'Filter Sweep', emoji:'🌀', accessory:'headphones',anim:'effect',  synth:'filterSweep' },
-  { id:'e2', cat:'effects',  name:'Disco Strings',emoji:'🎻', accessory:'chain',     anim:'effect',  synth:'discoFX'     },
-  { id:'e3', cat:'effects',  name:'Clean Guitar Chords', emoji:'🎸', accessory:'jacket', anim:'effect', synth:'stabSynth'   },
-  { id:'e4', cat:'effects',  name:'Techno Zap',   emoji:'💫', accessory:'visor',     anim:'effect',  synth:'technoZap'   },
-  { id:'e5', cat:'effects',  name:'Wah Guitar Lick', emoji:'✨', accessory:'robot_head',anim:'effect', synth:'flanger'     },
+  { id:'e1', cat:'effects',  name:'Filter Sweep', emoji:'🌀', file:'e1_sweep',      accessory:'headphones',anim:'effect',  synth:'filterSweep' },
+  { id:'e2', cat:'effects',  name:'Disco Strings',emoji:'🎻', file:'e2_strings',    accessory:'chain',     anim:'effect',  synth:'discoFX'     },
+  { id:'e3', cat:'effects',  name:'Clean Guitar Chords', emoji:'🎸', file:'e3_guitar_chords', accessory:'jacket', anim:'effect', synth:'stabSynth' },
+  { id:'e4', cat:'effects',  name:'Techno Zap',   emoji:'💫', file:'e4_techno_zap', accessory:'visor',     anim:'effect',  synth:'technoZap'   },
+  { id:'e5', cat:'effects',  name:'Wah Guitar Lick', emoji:'✨', file:'e5_wah_lick', accessory:'robot_head',anim:'effect', synth:'flanger'   },
   /* ---- MELODIES ---- */
-  { id:'m1', cat:'melodies', name:'Fingerstyle Bass', emoji:'🎸', accessory:'collar', anim:'melody',  synth:'bassGroove'  },
-  { id:'m2', cat:'melodies', name:'Disco Rhythm Guitar', emoji:'🎶', accessory:'scarf', anim:'melody', synth:'funkyClavinet'},
-  { id:'m3', cat:'melodies', name:'Electric Piano', emoji:'🎹', accessory:'bow_tie', anim:'melody',  synth:'discoChord'  },
-  { id:'m4', cat:'melodies', name:'Clean Guitar Lead', emoji:'🪕', accessory:'belt', anim:'melody',  synth:'arpeggioRun' },
-  { id:'m5', cat:'melodies', name:'Distorted Rock Riff', emoji:'⚡', accessory:'wristband', anim:'melody', synth:'metalRiff' },
+  { id:'m1', cat:'melodies', name:'Fingerstyle Bass', emoji:'🎸', file:'m1_bass',   accessory:'collar',    anim:'melody',  synth:'bassGroove'  },
+  { id:'m2', cat:'melodies', name:'Disco Rhythm Guitar', emoji:'🎶', file:'m2_rhythm_guitar', accessory:'scarf', anim:'melody', synth:'funkyClavinet'},
+  { id:'m3', cat:'melodies', name:'Electric Piano', emoji:'🎹', file:'m3_rhodes',   accessory:'bow_tie',   anim:'melody',  synth:'discoChord'  },
+  { id:'m4', cat:'melodies', name:'Clean Guitar Lead', emoji:'🪕', file:'m4_guitar_lead', accessory:'belt', anim:'melody', synth:'arpeggioRun' },
+  { id:'m5', cat:'melodies', name:'Distorted Rock Riff', emoji:'⚡', file:'m5_rock_riff', accessory:'wristband', anim:'melody', synth:'metalRiff' },
   /* ---- VOICES ---- */
-  { id:'v1', cat:'voices',   name:'"Come On!"',   emoji:'🎤', accessory:'microphone',anim:'voice',   synth:'vocalComeOn' },
-  { id:'v2', cat:'voices',   name:'Ooh-Yeah Vocal', emoji:'🎙️', accessory:'afro',    anim:'voice',   synth:'vocalOohYeah'},
-  { id:'v3', cat:'voices',   name:'"Celebrate"',  emoji:'🗣️', accessory:'big_hat',   anim:'voice',   synth:'vocalDance'  },
-  { id:'v4', cat:'voices',   name:'Expressive Scat', emoji:'😤', accessory:'bandana', anim:'voice',   synth:'vocalScat'   },
-  { id:'v5', cat:'voices',   name:'Vocoder Chant', emoji:'🤖', accessory:'antenna',  anim:'voice',   synth:'vocalRobot'  },
+  { id:'v1', cat:'voices',   name:'"Come On!"',   emoji:'🎤', file:'v1_come_on',    accessory:'microphone',anim:'voice',   synth:'vocalComeOn' },
+  { id:'v2', cat:'voices',   name:'Ooh-Yeah Vocal', emoji:'🎙️', file:'v2_ooh_yeah',  accessory:'afro',      anim:'voice',   synth:'vocalOohYeah'},
+  { id:'v3', cat:'voices',   name:'"Celebrate"',  emoji:'🗣️', file:'v3_celebrate',  accessory:'big_hat',   anim:'voice',   synth:'vocalDance'  },
+  { id:'v4', cat:'voices',   name:'Expressive Scat', emoji:'😤', file:'v4_scat',     accessory:'bandana',   anim:'voice',   synth:'vocalScat'   },
+  { id:'v5', cat:'voices',   name:'Vocoder Chant', emoji:'🤖', file:'v5_vocoder',   accessory:'antenna',   anim:'voice',   synth:'vocalRobot'  },
 ];
 
 // Chord progression: Cmaj7 – Am7 – Dm7 – G7 (root notes in MIDI)
@@ -451,16 +451,16 @@ const CHORD_TONES = [
 const midiToHz = n => 440 * Math.pow(2, (n-69)/12);
 
 // ----------------------------------------------------------------
-// CHARACTERS — 7 cartoon beatboxers (SVG-drawn inline)
+// CHARACTERS — 7 stylish Manga 70s Disco Beatboxers
 // ----------------------------------------------------------------
 const CHAR_DEFS = [
-  { id:0, name:'Luna',  skin:'#FDDCB5', hair:'#8B4513', dress:'#E879F9', belt:'#FFD700', shoe:'#A855F7' },
-  { id:1, name:'Zack',  skin:'#8D5524', hair:'#1A1A1A', dress:'#3B82F6', belt:'#EF4444', shoe:'#FFD700' },
-  { id:2, name:'Mia',   skin:'#FBBF24', hair:'#EC4899', dress:'#F97316', belt:'#A855F7', shoe:'#22D3EE' },
-  { id:3, name:'Rico',  skin:'#C68642', hair:'#4B2C20', dress:'#10B981', belt:'#FFD700', shoe:'#EF4444' },
-  { id:4, name:'Kai',   skin:'#F5CBA7', hair:'#FFD700', dress:'#EC4899', belt:'#22D3EE', shoe:'#A855F7' },
-  { id:5, name:'Nova',  skin:'#7D4E24', hair:'#9D174D', dress:'#8B5CF6', belt:'#34D399', shoe:'#F97316' },
-  { id:6, name:'Dex',   skin:'#FFFDE7', hair:'#374151', dress:'#EF4444', belt:'#FFD700', shoe:'#10B981' },
+  { id:0, name:'Rin',    gender:'f', skin:'#FDDCB5', hair:'#2C2A4A', eye:'#5B5EA6', dress:'#C73E1D', shirt:'#F4A261', belt:'#E9C46A', shoe:'#264653' }, // Afro/Disco-Diva jumpsuit
+  { id:1, name:'Ren',    gender:'m', skin:'#E0AC69', hair:'#1A1A24', eye:'#2A9D8F', dress:'#1D3557', shirt:'#F1FAEE', belt:'#E63946', shoe:'#457B9D' }, // Wide collar 70s poly suit
+  { id:2, name:'Yuki',   gender:'f', skin:'#FFE0BD', hair:'#E76F51', eye:'#3D5A80', dress:'#7209B7', shirt:'#F72585', belt:'#FFD166', shoe:'#4CC9F0' }, // Glam-rock platform jumpsuit
+  { id:3, name:'Kenji',  gender:'m', skin:'#C68642', hair:'#3A2E39', eye:'#E76F51', dress:'#386641', shirt:'#F2E8CF', belt:'#BC4749', shoe:'#6A994E' }, // Funk leather vest & flared trousers
+  { id:4, name:'Hikari', gender:'f', skin:'#F5CBA7', hair:'#F3C68F', eye:'#7209B7', dress:'#D90429', shirt:'#EDF2F4', belt:'#EF233C', shoe:'#2B2D42' }, // 70s disco queen metallic halter
+  { id:5, name:'Tatsu',  gender:'m', skin:'#9B6A45', hair:'#1F130B', eye:'#E9C46A', dress:'#582F0E', shirt:'#DDB892', belt:'#7F4F24', shoe:'#331800' }, // Soul brother open silk shirt & cords
+  { id:6, name:'Shun',   gender:'m', skin:'#FFF0DB', hair:'#3D5A80', eye:'#2EC4B6', dress:'#6D597A', shirt:'#E56B6F', belt:'#EAAC8B', shoe:'#355070' }  // Disco dandy peaked lapel suit
 ];
 
 // ----------------------------------------------------------------
@@ -484,17 +484,64 @@ class AudioEngine {
     this.bar          = 0;
     this.onBeat       = null; // callback(beat, time)
     this.initialized  = false;
+    this.sampleBuffers= {};   // soundId -> AudioBuffer (loaded external audio assets)
+    this.sampleLoadAttempted = new Set();
+  }
+
+  // Pre-load an external audio sample from /sounds/ folder (.mp3 / .wav / .ogg)
+  async loadSample(sound) {
+    if (this.sampleBuffers[sound.id] || this.sampleLoadAttempted.has(sound.id)) return;
+    this.sampleLoadAttempted.add(sound.id);
+
+    const extensions = ['mp3', 'wav', 'ogg'];
+    for (const ext of extensions) {
+      const url = `sounds/${sound.file}.${ext}`;
+      try {
+        const res = await fetch(url);
+        if (res.ok) {
+          const arrayBuf = await res.arrayBuffer();
+          const audioBuf = await this.ctx.decodeAudioData(arrayBuf);
+          this.sampleBuffers[sound.id] = audioBuf;
+          console.log(`🎵 [BeatCrew] Loaded sample for ${sound.name}: ${url}`);
+          return;
+        }
+      } catch (err) {
+        // Fallback continues to next format or internal synth
+      }
+    }
+  }
+
+  // Play an external audio loop sample or trigger procedural fallback
+  _playSampleNode(sound, beat, bar, t) {
+    const buf = this.sampleBuffers[sound.id];
+    // If the loop sample is 4 beats (2.0s) or 16 beats (8.0s), only trigger at the start of loop cycle
+    const isMultiBar = buf.duration > SPB * 1.5;
+    if (isMultiBar && beat !== 0) return;
+
+    const src = this.ctx.createBufferSource();
+    src.buffer = buf;
+
+    const g = this.ctx.createGain();
+    g.gain.setValueAtTime(0.85, t);
+
+    src.connect(g);
+    g.connect(this.dryBus);
+
+    src.start(t);
   }
 
   async init() {
     if (this.initialized) return;
     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-    // --- SIGNAL CHAIN: instruments → dry+wet → compressor → master → analyser → out ---
+    // Master volume & Analyser
     this.master = this.ctx.createGain();
     this.master.gain.value = 0.001;
 
-    // Compressor — glues the mix, prevents clipping
+    this.analyser = this.ctx.createAnalyser();
+    this.analyser.fftSize = 128; // Faster FFT calculation
+
+    // Dynamics Compressor (master bus glue)
     this.comp = this.ctx.createDynamicsCompressor();
     this.comp.threshold.value = -18;
     this.comp.knee.value      = 12;
@@ -502,82 +549,65 @@ class AudioEngine {
     this.comp.attack.value    = 0.005;
     this.comp.release.value   = 0.15;
 
-    // Reverb — algorithmic via convolver with generated impulse
-    this.reverbGain = this.ctx.createGain();
-    this.reverbGain.gain.value = 0.35;
-    this.convolver = this.ctx.createConvolver();
-    this.convolver.buffer = this._createReverbIR(2.2, 3.5);
+    // Master Lowpass to keep mix warm and tame high harshness
+    this.masterLP = this.ctx.createBiquadFilter();
+    this.masterLP.type = 'lowpass';
+    this.masterLP.frequency.value = 13500;
+    this.masterLP.Q.value = 0.5;
 
-    // Dry bus
+    // Reusable Shared Algorithmic Reverb (Freeverb-style stereo feedback delay network, 0% Convolver CPU)
     this.dryBus = this.ctx.createGain();
     this.dryBus.gain.value = 0.75;
-
-    // Wet bus
     this.wetBus = this.ctx.createGain();
     this.wetBus.gain.value = 0.35;
 
-    // Master lowpass — remove any remaining harsh highs above ~14kHz
-    this.masterLP = this.ctx.createBiquadFilter();
-    this.masterLP.type = 'lowpass';
-    this.masterLP.frequency.value = 14000;
-    this.masterLP.Q.value = 0.5;
+    // Shared Reverb Delay Lines (constant background nodes, no per-beat buffer allocation)
+    const revL = this.ctx.createDelay(0.1);
+    const revR = this.ctx.createDelay(0.1);
+    revL.delayTime.value = 0.038;
+    revR.delayTime.value = 0.047;
 
-    // Analyser
-    this.analyser = this.ctx.createAnalyser();
-    this.analyser.fftSize = 256;
+    const revFbL = this.ctx.createGain(); revFbL.gain.value = 0.45;
+    const revFbR = this.ctx.createGain(); revFbR.gain.value = 0.45;
 
-    // Routing
-    //   this.dryBus ──────────────────────────┐
-    //   this.wetBus → convolver → reverbGain ─┤→ masterLP → comp → master → analyser → dest
+    const revDampL = this.ctx.createBiquadFilter(); revDampL.type = 'lowpass'; revDampL.frequency.value = 3500;
+    const revDampR = this.ctx.createBiquadFilter(); revDampR.type = 'lowpass'; revDampR.frequency.value = 3500;
+
+    this.wetBus.connect(revL);
+    this.wetBus.connect(revR);
+    revL.connect(revDampL);
+    revDampL.connect(revFbL);
+    revFbL.connect(revL);
+    revR.connect(revDampR);
+    revDampR.connect(revFbR);
+    revFbR.connect(revR);
+
+    // Sum Dry & Wet into Master Chain
     this.dryBus.connect(this.masterLP);
-    this.wetBus.connect(this.convolver);
-    this.convolver.connect(this.reverbGain);
-    this.reverbGain.connect(this.masterLP);
+    revDampL.connect(this.masterLP);
+    revDampR.connect(this.masterLP);
+
     this.masterLP.connect(this.comp);
     this.comp.connect(this.master);
     this.master.connect(this.analyser);
     this.analyser.connect(this.ctx.destination);
 
-    // Pre-generate noise buffer (reusable)
-    const noiseDur = 4;
-    this._noiseBuf = this.ctx.createBuffer(2, this.ctx.sampleRate * noiseDur, this.ctx.sampleRate);
-    for (let ch = 0; ch < 2; ch++) {
-      const d = this._noiseBuf.getChannelData(ch);
-      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-    }
+    // Shared Noise Buffer (1 sec is plenty for looping snare/hihats, avoids GC)
+    const noiseLen = this.ctx.sampleRate;
+    this._noiseBuf = this.ctx.createBuffer(1, noiseLen, this.ctx.sampleRate);
+    const nd = this._noiseBuf.getChannelData(0);
+    for (let i = 0; i < noiseLen; i++) nd[i] = Math.random() * 2 - 1;
 
-    // Waveshaper curves (reusable)
+    // Fast Waveshaper lookup curves
     this._softClipCurve = this._makeSoftClip(3);
     this._warmSatCurve  = this._makeWarmSat();
-    this._hardClipCurve = this._makeSoftClip(12);
+    this._hardClipCurve = this._makeSoftClip(8);
 
     this.initialized = true;
   }
 
-  // Generate a reverb impulse response procedurally
-  _createReverbIR(duration, decay) {
-    const len  = this.ctx.sampleRate * duration;
-    const buf  = this.ctx.createBuffer(2, len, this.ctx.sampleRate);
-    for (let ch = 0; ch < 2; ch++) {
-      const data = buf.getChannelData(ch);
-      for (let i = 0; i < len; i++) {
-        // Exponential decay noise with early reflections
-        const t = i / this.ctx.sampleRate;
-        const env = Math.exp(-t * decay);
-        // Add a few early reflections as impulses
-        let early = 0;
-        if (i === Math.floor(0.012 * this.ctx.sampleRate)) early = 0.6;
-        if (i === Math.floor(0.025 * this.ctx.sampleRate)) early = 0.4;
-        if (i === Math.floor(0.041 * this.ctx.sampleRate)) early = 0.3;
-        if (i === Math.floor(0.058 * this.ctx.sampleRate)) early = 0.2;
-        data[i] = ((Math.random() * 2 - 1) * env + early) * 0.5;
-      }
-    }
-    return buf;
-  }
-
   _makeSoftClip(amount) {
-    const n = 8192;
+    const n = 1024;
     const curve = new Float32Array(n);
     for (let i = 0; i < n; i++) {
       const x = (i * 2) / n - 1;
@@ -587,11 +617,10 @@ class AudioEngine {
   }
 
   _makeWarmSat() {
-    const n = 4096;
+    const n = 1024;
     const curve = new Float32Array(n);
     for (let i = 0; i < n; i++) {
       const x = (i * 2) / n - 1;
-      // Warm tube-style saturation
       if (x >= 0) curve[i] = 1 - Math.exp(-x * 2.5);
       else curve[i] = -(1 - Math.exp(x * 2.5));
     }
@@ -621,19 +650,22 @@ class AudioEngine {
   _schedule() {
     const ctx = this.ctx;
     const ahead = ctx.currentTime + this.lookahead;
+
     while (this.transport.nextBeatTime < ahead) {
       const t    = this.transport.nextBeatTime;
       const beat = this.transport.beat;
       const bar  = this.transport.bar;
 
-      // fire callback (visual sync)
-      const delay = (t - ctx.currentTime) * 1000;
-      setTimeout(() => {
-        this.beat = beat;
-        if (this.onBeat) this.onBeat(beat, t);
-      }, Math.max(0, delay));
+      // Single beat event callback synced to audio grid
+      if (this.onBeat) {
+        const delay = Math.max(0, (t - ctx.currentTime) * 1000);
+        setTimeout(() => {
+          this.beat = beat;
+          this.onBeat(beat, t);
+        }, delay);
+      }
 
-      // play all active sounds for this beat
+      // Schedule notes natively ahead in Web Audio graph
       for (const [charIdStr, soundId] of Object.entries(this.activeSlots)) {
         const charId = parseInt(charIdStr);
         if (!this._isAudible(charId)) continue;
@@ -654,21 +686,30 @@ class AudioEngine {
   }
 
   _playSound(sound, beat, bar, t) {
+    // If an external sample asset exists for this sound, play it with 0% synth CPU overhead
+    if (this.sampleBuffers[sound.id]) {
+      this._playSampleNode(sound, beat, bar, t);
+      return;
+    }
+    // Asynchronous background attempt to fetch sample if not tried yet
+    if (!this.sampleLoadAttempted.has(sound.id)) {
+      this.loadSample(sound);
+    }
+    // High-performance procedural fallback
     const f = this[sound.synth];
     if (f) f.call(this, beat, bar, t);
   }
 
   // ================================================================
-  //  HELPERS — warm, filtered, layered
+  //  STREAMLINED HIGH-PERFORMANCE AUDIO BUILDING BLOCKS
   // ================================================================
 
-  // Routed gain node (dry + wet send)
   _out(vol, t, dur, wetAmount) {
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(vol, t + 0.005);
+    g.gain.linearRampToValueAtTime(vol, t + 0.004);
     g.gain.setTargetAtTime(0.0001, t + dur * 0.7, dur * 0.18);
-    const wet = typeof wetAmount === 'number' ? wetAmount : 0.35;
+    const wet = typeof wetAmount === 'number' ? wetAmount : 0.3;
     const dg = this.ctx.createGain(); dg.gain.value = 1;
     const wg = this.ctx.createGain(); wg.gain.value = wet;
     g.connect(dg); dg.connect(this.dryBus);
@@ -676,12 +717,11 @@ class AudioEngine {
     return g;
   }
 
-  // Exponential-decay gain (for drums & guitar plucks)
   _drumOut(vol, t, dur, wetAmount) {
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(vol, t);
     g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    const wet = typeof wetAmount === 'number' ? wetAmount : 0.2;
+    const wet = typeof wetAmount === 'number' ? wetAmount : 0.18;
     const dg = this.ctx.createGain(); dg.gain.value = 1;
     const wg = this.ctx.createGain(); wg.gain.value = wet;
     g.connect(dg); dg.connect(this.dryBus);
@@ -689,197 +729,106 @@ class AudioEngine {
     return g;
   }
 
-  // Natural Electric Guitar Pluck / Strum Note (Clean Fender / Gibson Tone)
-  _guitarNote(freq, t, dur, vol, isMuted = false, wetAmt = 0.35) {
-    const actualDur = isMuted ? 0.09 : dur;
+  // High performance clean guitar voice (Dual oscillator with pickup bandpass filter)
+  _guitarNote(freq, t, dur, vol, isMuted = false, wetAmt = 0.28) {
+    const actualDur = isMuted ? 0.07 : dur;
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(vol, t + 0.003); // Quick pick attack
-    if (isMuted) {
-      g.gain.exponentialRampToValueAtTime(0.0001, t + actualDur);
-    } else {
-      g.gain.setTargetAtTime(vol * 0.5, t + 0.02, 0.08); // Pluck settle
-      g.gain.exponentialRampToValueAtTime(0.0001, t + actualDur);
-    }
+    g.gain.linearRampToValueAtTime(vol, t + 0.003);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + actualDur);
 
-    // Amp & pickup emulation (dual resonant peak around 2.8kHz and 4.2kHz, warm low cut)
-    const hp = this.ctx.createBiquadFilter();
-    hp.type = 'highpass'; hp.frequency.value = 90;
-    const pickup = this.ctx.createBiquadFilter();
-    pickup.type = 'peaking'; pickup.frequency.value = 2800; pickup.Q.value = 1.4; pickup.gain.value = 3;
-    const cabLP = this.ctx.createBiquadFilter();
-    cabLP.type = 'lowpass'; cabLP.frequency.value = isMuted ? 1800 : 4800; cabLP.Q.value = 0.7;
+    // Warm guitar cabinet & pickup filter (single optimized filter)
+    const cab = this.ctx.createBiquadFilter();
+    cab.type = 'lowpass';
+    cab.frequency.value = isMuted ? 1600 : 3800;
+    cab.Q.value = 1.0;
 
-    // Pick attack click (tiny burst of body resonance)
-    const pickSrc = this.ctx.createBufferSource();
-    pickSrc.buffer = this._noiseBuf;
-    const pickFilt = this.ctx.createBiquadFilter();
-    pickFilt.type = 'bandpass'; pickFilt.frequency.value = 2200; pickFilt.Q.value = 3;
-    const pickG = this.ctx.createGain();
-    pickG.gain.setValueAtTime(vol * 0.35, t);
-    pickG.gain.exponentialRampToValueAtTime(0.0001, t + 0.015);
-    pickSrc.connect(pickFilt); pickFilt.connect(pickG); pickG.connect(cabLP);
-    pickSrc.start(t); pickSrc.stop(t + 0.02);
+    // 2 oscillators instead of 5-6 to save 70% CPU while preserving electric tone
+    const o1 = this.ctx.createOscillator();
+    o1.type = 'triangle';
+    o1.frequency.setValueAtTime(freq, t);
 
-    // Warm tube clean preamp
-    const sat = this.ctx.createWaveShaper();
-    sat.curve = this._warmSatCurve;
+    const o2 = this.ctx.createOscillator();
+    o2.type = 'sawtooth';
+    o2.frequency.setValueAtTime(freq, t);
+    o2.detune.value = 3;
+    const o2g = this.ctx.createGain();
+    o2g.gain.value = 0.3;
 
-    // String synthesis: Fundamental + rich natural electric guitar harmonics (Karplus/harmonic blend)
-    const harmonics = [
-      { ratio: 1, g: 0.65, type: 'triangle' },
-      { ratio: 2, g: 0.35, type: 'sine' },
-      { ratio: 3, g: 0.22, type: 'sine' },
-      { ratio: 4, g: 0.12, type: 'sine' },
-      { ratio: 5, g: 0.06, type: 'triangle' }
-    ];
-
-    harmonics.forEach(h => {
-      const o = this.ctx.createOscillator();
-      o.type = h.type;
-      o.frequency.setValueAtTime(freq * h.ratio, t);
-      // Slight string micro-detune
-      o.detune.value = (Math.random() - 0.5) * 4;
-      const hg = this.ctx.createGain();
-      hg.gain.value = h.g;
-      o.connect(hg);
-      hg.connect(sat);
-      o.start(t);
-      o.stop(t + actualDur + 0.05);
-    });
-
-    sat.connect(hp);
-    hp.connect(pickup);
-    pickup.connect(cabLP);
-    cabLP.connect(g);
+    o1.connect(cab);
+    o2.connect(o2g);
+    o2g.connect(cab);
+    cab.connect(g);
 
     const dg = this.ctx.createGain(); dg.gain.value = 1;
     const wg = this.ctx.createGain(); wg.gain.value = wetAmt;
     g.connect(dg); dg.connect(this.dryBus);
     g.connect(wg); wg.connect(this.wetBus);
+
+    o1.start(t); o1.stop(t + actualDur + 0.03);
+    o2.start(t); o2.stop(t + actualDur + 0.03);
   }
 
-  // Natural Human Formant Voice Generator (Glottal pulse wave + 3 acoustic vocal tract resonances + vibrato)
-  _humanVoice(freq, formants, t, dur, vol, vibratoStart = 0.12, wetAmt = 0.45) {
+  // High performance human vocal voice (Glottal saw + 2 dominant formants)
+  _humanVoice(freq, formants, t, dur, vol, vibratoStart = 0.1, wetAmt = 0.35) {
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(vol, t + 0.035); // Gentle vocal onset
-    g.gain.setValueAtTime(vol, t + dur * 0.7);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    g.gain.linearRampToValueAtTime(vol, t + 0.025);
+    g.gain.setTargetAtTime(0.0001, t + dur * 0.7, dur * 0.15);
 
-    // Vocal cord vibrato (5.2 Hz LFO, starts after onset)
-    const vibLFO = this.ctx.createOscillator();
-    vibLFO.frequency.value = 5.2;
-    const vibGain = this.ctx.createGain();
-    vibGain.gain.setValueAtTime(0.0001, t);
-    vibGain.gain.setTargetAtTime(8, t + vibratoStart, 0.08); // 8 cents vibrato
-    vibLFO.connect(vibGain);
+    // Vibrato LFO
+    const vib = this.ctx.createOscillator();
+    vib.frequency.value = 5.2;
+    const vibG = this.ctx.createGain();
+    vibG.gain.setValueAtTime(0.0001, t);
+    vibG.gain.setTargetAtTime(7, t + vibratoStart, 0.05);
+    vib.connect(vibG);
 
-    // Glottal source (soft asymmetrical pulse approximating human vocal folds)
-    const o1 = this.ctx.createOscillator();
-    o1.type = 'sawtooth';
-    o1.frequency.setValueAtTime(freq, t);
-    vibGain.connect(o1.detune);
+    const o = this.ctx.createOscillator();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(freq, t);
+    vibG.connect(o.detune);
 
-    const o2 = this.ctx.createOscillator();
-    o2.type = 'triangle';
-    o2.frequency.setValueAtTime(freq, t);
-    o2.detune.value = 3;
-    vibGain.connect(o2.detune);
+    const fOut = this.ctx.createGain();
+    fOut.gain.value = 1.0;
 
-    const glottalMix = this.ctx.createGain();
-    glottalMix.gain.value = 0.5;
-    o1.connect(glottalMix);
-    o2.connect(glottalMix);
-
-    // Vocal Tract Formant Filters (Mouth, Throat, Nasal Cavity)
-    const formantOut = this.ctx.createGain();
-    formantOut.gain.value = 1.0;
-
-    formants.forEach(([fFreq, qVal, fGain]) => {
+    // Use top 2 primary formants (F1, F2 determine 90% of vowel intelligibility with 1/3 the filter nodes)
+    const activeFormants = formants.slice(0, 2);
+    activeFormants.forEach(([ff, q, fgVal]) => {
       const bp = this.ctx.createBiquadFilter();
       bp.type = 'bandpass';
-      bp.frequency.setValueAtTime(fFreq, t);
-      bp.Q.setValueAtTime(qVal, t);
+      bp.frequency.setValueAtTime(ff, t);
+      bp.Q.setValueAtTime(q, t);
       const fg = this.ctx.createGain();
-      fg.gain.setValueAtTime(fGain, t);
-      glottalMix.connect(bp);
+      fg.gain.setValueAtTime(fgVal, t);
+      o.connect(bp);
       bp.connect(fg);
-      fg.connect(formantOut);
+      fg.connect(fOut);
     });
 
-    // Body warmth filter
-    const voiceLP = this.ctx.createBiquadFilter();
-    voiceLP.type = 'lowpass';
-    voiceLP.frequency.value = 4500;
-    voiceLP.Q.value = 0.5;
+    fOut.connect(g);
 
-    formantOut.connect(voiceLP);
-    voiceLP.connect(g);
-
-    const dg = this.ctx.createGain(); dg.gain.value = 0.75;
+    const dg = this.ctx.createGain(); dg.gain.value = 0.8;
     const wg = this.ctx.createGain(); wg.gain.value = wetAmt;
     g.connect(dg); dg.connect(this.dryBus);
     g.connect(wg); wg.connect(this.wetBus);
 
-    vibLFO.start(t); vibLFO.stop(t + dur + 0.1);
-    o1.start(t); o1.stop(t + dur + 0.1);
-    o2.start(t); o2.stop(t + dur + 0.1);
+    vib.start(t); vib.stop(t + dur + 0.05);
+    o.start(t); o.stop(t + dur + 0.05);
   }
 
-  // Warm oscillator: 2 detuned oscillators through a lowpass filter
-  _warmOsc(type, freq, t, dur, vol, lpFreq, wetAmt) {
-    const lp = this.ctx.createBiquadFilter();
-    lp.type = 'lowpass'; lp.frequency.value = lpFreq || 3000; lp.Q.value = 0.7;
-    const g = this._out(vol, t, dur, wetAmt);
-    lp.connect(g);
-    // Main osc
-    const o1 = this.ctx.createOscillator();
-    o1.type = type; o1.frequency.value = freq;
-    o1.connect(lp);
-    // Detuned layer for warmth
-    const o2 = this.ctx.createOscillator();
-    o2.type = type; o2.frequency.value = freq;
-    o2.detune.value = 8; // subtle chorus
-    const g2 = this.ctx.createGain(); g2.gain.value = 0.5;
-    o2.connect(g2); g2.connect(lp);
-    o1.start(t); o1.stop(t + dur + 0.3);
-    o2.start(t); o2.stop(t + dur + 0.3);
-    return { osc: o1, osc2: o2, gain: g, lp };
-  }
-
-  // Filtered noise with proper envelope
-  _filtNoise(t, dur, vol, loFreq, hiFreq, wetAmt) {
+  // Filtered noise helper
+  _filtNoise(t, dur, vol, freq, wetAmt) {
     const src = this.ctx.createBufferSource();
     src.buffer = this._noiseBuf;
     const bp = this.ctx.createBiquadFilter();
     bp.type = 'bandpass';
-    bp.frequency.value = (loFreq + hiFreq) / 2;
-    bp.Q.value = ((hiFreq - loFreq) > 2000) ? 0.5 : 2;
+    bp.frequency.value = freq;
+    bp.Q.value = 1.5;
     const g = this._drumOut(vol, t, dur, wetAmt);
     src.connect(bp); bp.connect(g);
-    src.start(t); src.stop(t + dur + 0.05);
+    src.start(t); src.stop(t + dur + 0.02);
     return src;
-  }
-
-  // Formant vocal note (sawtooth through parallel formant filters)
-  _formantNote(freq, formants, t, dur, vol, wetAmt) {
-    const g = this._out(vol, t, dur, wetAmt);
-    // Source: 3 slightly detuned saws
-    const merger = this.ctx.createGain(); merger.gain.value = 1;
-    merger.connect(g);
-    for (let d = -6; d <= 6; d += 6) {
-      const o = this.ctx.createOscillator();
-      o.type = 'sawtooth'; o.frequency.value = freq; o.detune.value = d;
-      // Each formant filter
-      formants.forEach(([ff, q, gain]) => {
-        const bp = this.ctx.createBiquadFilter();
-        bp.type = 'bandpass'; bp.frequency.value = ff; bp.Q.value = q;
-        const fg = this.ctx.createGain(); fg.gain.value = gain;
-        o.connect(bp); bp.connect(fg); fg.connect(merger);
-      });
-      o.start(t); o.stop(t + dur + 0.2);
-    }
   }
 
   // ================================================================
@@ -942,75 +891,63 @@ class AudioEngine {
   }
 
   hihat(beat, bar, t) {
-    // Closed hi-hat: metallic square oscillators at inharmonic ratios, heavily filtered
-    const playHH = (time, vol, dur) => {
-      const g = this._drumOut(vol, time, dur, 0.15);
+    // Optimized closed hi-hat: filtered noise + metallic tone
+    const playHH = (time, vol) => {
+      const g = this._drumOut(vol, time, 0.05, 0.15);
       const bp = this.ctx.createBiquadFilter();
-      bp.type = 'bandpass'; bp.frequency.value = 8500; bp.Q.value = 1.2;
-      const lp = this.ctx.createBiquadFilter();
-      lp.type = 'lowpass'; lp.frequency.value = 12000; lp.Q.value = 0.5;
-      // Mix of metallic square tones at non-harmonic ratios
-      [587, 845, 1267, 1578].forEach((f, i) => {
-        const o = this.ctx.createOscillator();
-        o.type = 'square'; o.frequency.value = f;
-        const og = this.ctx.createGain(); og.gain.value = 0.04 / (i + 1);
-        o.connect(og); og.connect(bp);
-        o.start(time); o.stop(time + dur + 0.02);
-      });
-      // Plus a touch of filtered noise for realism
+      bp.type = 'bandpass'; bp.frequency.value = 8800; bp.Q.value = 2.0;
+
+      const o = this.ctx.createOscillator();
+      o.type = 'square'; o.frequency.value = 1180;
+
       const ns = this.ctx.createBufferSource(); ns.buffer = this._noiseBuf;
-      const ng = this.ctx.createGain(); ng.gain.setValueAtTime(vol * 0.4, time);
-      ng.gain.exponentialRampToValueAtTime(0.0001, time + dur);
-      const nhp = this.ctx.createBiquadFilter(); nhp.type = 'highpass'; nhp.frequency.value = 7000;
-      ns.connect(nhp); nhp.connect(ng); ng.connect(bp);
-      ns.start(time); ns.stop(time + dur + 0.02);
-      bp.connect(lp); lp.connect(g);
+
+      o.connect(bp);
+      ns.connect(bp);
+      bp.connect(g);
+
+      o.start(time); o.stop(time + 0.05);
+      ns.start(time); ns.stop(time + 0.05);
     };
 
-    playHH(t, 0.18, 0.06);
-    // Offbeat (softer)
-    const tHalf = t + SPB / 2;
-    playHH(tHalf, 0.1, 0.04);
+    playHH(t, 0.16);
+    // Offbeat 8th
+    playHH(t + SPB / 2, 0.10);
   }
 
   metalBlast(beat, bar, t) {
     if (beat !== 0) return;
-    // Distorted power chord — but through a cab-sim (lowpass) so it doesn't shred ears
+    // Distorted power chord
     const root = 82.41; // E2
-    const fifth = root * 1.5;
-    const oct   = root * 2;
-    [root, fifth, oct].forEach(freq => {
-      const o = this.ctx.createOscillator();
-      o.type = 'sawtooth'; o.frequency.value = freq;
-      const o2 = this.ctx.createOscillator();
-      o2.type = 'square'; o2.frequency.value = freq * 1.002;
-      const mix = this.ctx.createGain(); mix.gain.value = 0.5;
-      o2.connect(mix);
-      // Distortion
-      const ws = this.ctx.createWaveShaper(); ws.curve = this._hardClipCurve;
-      ws.oversample = '4x';
-      // Cabinet sim: lowpass at 4kHz, cuts fizz
-      const cab = this.ctx.createBiquadFilter();
-      cab.type = 'lowpass'; cab.frequency.value = 3500; cab.Q.value = 0.8;
-      const g = this._drumOut(0.18, t, 0.5, 0.4);
-      o.connect(ws); mix.connect(ws); ws.connect(cab); cab.connect(g);
-      o.start(t); o.stop(t + 0.55);
-      o2.start(t); o2.stop(t + 0.55);
-    });
+    const g = this._drumOut(0.2, t, 0.45, 0.35);
+    const cab = this.ctx.createBiquadFilter();
+    cab.type = 'lowpass'; cab.frequency.value = 3200;
+    const ws = this.ctx.createWaveShaper(); ws.curve = this._hardClipCurve;
+
+    const o1 = this.ctx.createOscillator(); o1.type = 'sawtooth'; o1.frequency.value = root;
+    const o2 = this.ctx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.value = root * 1.5;
+
+    o1.connect(ws); o2.connect(ws);
+    ws.connect(cab); cab.connect(g);
+
+    o1.start(t); o1.stop(t + 0.5);
+    o2.start(t); o2.stop(t + 0.5);
   }
 
   cowbell(beat, bar, t) {
-    // Classic 808 cowbell — bandpass-filtered, warm
-    const g = this._drumOut(0.15, t, (beat % 2 === 0 ? 0.35 : 0.2), 0.3);
+    // Classic 808 cowbell
+    const g = this._drumOut(0.14, t, (beat % 2 === 0 ? 0.28 : 0.18), 0.25);
     const bp = this.ctx.createBiquadFilter();
     bp.type = 'bandpass'; bp.frequency.value = 720; bp.Q.value = 4;
-    [562, 845].forEach(f => {
-      const o = this.ctx.createOscillator();
-      o.type = 'triangle'; o.frequency.value = f;
-      o.connect(bp);
-      o.start(t); o.stop(t + 0.5);
-    });
+
+    const o1 = this.ctx.createOscillator(); o1.type = 'triangle'; o1.frequency.value = 562;
+    const o2 = this.ctx.createOscillator(); o2.type = 'triangle'; o2.frequency.value = 845;
+
+    o1.connect(bp); o2.connect(bp);
     bp.connect(g);
+
+    o1.start(t); o1.stop(t + 0.35);
+    o2.start(t); o2.stop(t + 0.35);
   }
 
   // ================================================================
@@ -1019,73 +956,45 @@ class AudioEngine {
 
   filterSweep(beat, bar, t) {
     if (beat !== 0) return;
-    // Classic 70s Disco Philly Strings Sweep / Swell (rich violins swell across the 4 bars)
-    const root = midiToHz(CHORD_ROOTS[bar % 4]);
+    // 70s Disco Strings Sweep (warm 2-oscillator pad sweep)
     const chord = CHORD_TONES[bar % 4];
-    const dur = LOOP * 0.96;
-    const g = this.ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(0.14, t + 0.6); // Warm string swell
-    g.gain.setValueAtTime(0.14, t + dur * 0.8);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    const dur = LOOP * 0.95;
+    const g = this._out(0.14, t, dur, 0.4);
 
-    // Warm orchestral acoustic lowpass
     const lp = this.ctx.createBiquadFilter();
     lp.type = 'lowpass';
-    lp.frequency.setValueAtTime(1400, t);
-    lp.frequency.linearRampToValueAtTime(3200, t + dur * 0.6);
-    lp.frequency.linearRampToValueAtTime(1600, t + dur);
-    lp.Q.value = 0.5;
+    lp.frequency.setValueAtTime(1200, t);
+    lp.frequency.linearRampToValueAtTime(2800, t + dur * 0.5);
+    lp.frequency.linearRampToValueAtTime(1400, t + dur);
 
-    chord.forEach(note => {
-      [-4, 0, 4].forEach(det => {
-        const o = this.ctx.createOscillator();
-        o.type = 'sawtooth';
-        o.frequency.value = midiToHz(note + 12);
-        o.detune.value = det;
-        const og = this.ctx.createGain(); og.gain.value = 0.04;
-        o.connect(og); og.connect(lp);
-        o.start(t); o.stop(t + dur + 0.1);
-      });
-    });
+    const o1 = this.ctx.createOscillator(); o1.type = 'sawtooth'; o1.frequency.value = midiToHz(chord[0] + 12);
+    const o2 = this.ctx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.value = midiToHz(chord[2] + 12); o2.detune.value = 5;
 
+    o1.connect(lp); o2.connect(lp);
     lp.connect(g);
-    const dg = this.ctx.createGain(); dg.gain.value = 0.6;
-    const wg = this.ctx.createGain(); wg.gain.value = 0.5;
-    g.connect(dg); dg.connect(this.dryBus);
-    g.connect(wg); wg.connect(this.wetBus);
+
+    o1.start(t); o1.stop(t + dur + 0.05);
+    o2.start(t); o2.stop(t + dur + 0.05);
   }
 
   discoFX(beat, bar, t) {
-    // Disco String Section Stabs (authentic Philly disco violin hits on 2 & 4)
+    // Disco String Section Hit
     if (beat % 2 !== 0) return;
     const chord = CHORD_TONES[beat % 4];
-    const dur = 0.24;
-    const g = this.ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(0.15, t + 0.03);
-    g.gain.setTargetAtTime(0.0001, t + 0.12, 0.06);
+    const dur = 0.22;
+    const g = this._out(0.16, t, dur, 0.35);
 
     const lp = this.ctx.createBiquadFilter();
-    lp.type = 'lowpass'; lp.frequency.value = 3600; lp.Q.value = 0.5;
+    lp.type = 'lowpass'; lp.frequency.value = 3400;
 
-    chord.slice(0, 3).forEach(n => {
-      [-5, 0, 5].forEach(det => {
-        const o = this.ctx.createOscillator();
-        o.type = 'sawtooth';
-        o.frequency.value = midiToHz(n + 12);
-        o.detune.value = det;
-        const og = this.ctx.createGain(); og.gain.value = 0.06;
-        o.connect(og); og.connect(lp);
-        o.start(t); o.stop(t + dur + 0.1);
-      });
-    });
+    const o1 = this.ctx.createOscillator(); o1.type = 'sawtooth'; o1.frequency.value = midiToHz(chord[0] + 12);
+    const o2 = this.ctx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.value = midiToHz(chord[2] + 12); o2.detune.value = 4;
 
+    o1.connect(lp); o2.connect(lp);
     lp.connect(g);
-    const dg = this.ctx.createGain(); dg.gain.value = 0.7;
-    const wg = this.ctx.createGain(); wg.gain.value = 0.5;
-    g.connect(dg); dg.connect(this.dryBus);
-    g.connect(wg); wg.connect(this.wetBus);
+
+    o1.start(t); o1.stop(t + dur + 0.05);
+    o2.start(t); o2.stop(t + dur + 0.05);
   }
 
   stabSynth(beat, bar, t) {
@@ -1166,158 +1075,96 @@ class AudioEngine {
   // ================================================================
 
   bassGroove(beat, bar, t) {
-    // Authentic 70s Fender Precision Fingerstyle E-Bass (Bernard Edwards / Chic style)
+    // Optimized Disco E-Bass (clean 2-note per beat groove with instant release)
     const rootNote = CHORD_ROOTS[beat % 4] - 12;
-    const freq1 = midiToHz(rootNote);
-    const freq5 = midiToHz(rootNote + 7);
-    const octFreq = midiToHz(rootNote + 12);
+    const f1 = midiToHz(rootNote);
+    const f2 = (beat % 2 === 1) ? midiToHz(rootNote + 12) : midiToHz(rootNote + 7);
 
-    // Dynamic 16th disco groove: root on beat, ghost pluck at +0.25, octave slap at +0.5, 5th at +0.75
-    const bassHits = [
-      { offset: 0, f: freq1, dur: SPB * 0.42, vol: 0.38, slap: false },
-      { offset: SPB * 0.25, f: freq1, dur: 0.08, vol: 0.18, slap: false }, // Ghost touch
-      { offset: SPB * 0.5, f: (beat % 2 === 1 ? octFreq : freq5), dur: SPB * 0.38, vol: 0.34, slap: true },
-      { offset: SPB * 0.75, f: freq1, dur: 0.09, vol: 0.2, slap: false }
+    const hits = [
+      { dt: 0, f: f1, dur: SPB * 0.44, vol: 0.36 },
+      { dt: SPB * 0.5, f: f2, dur: SPB * 0.40, vol: 0.32 }
     ];
 
-    bassHits.forEach(h => {
-      const hitTime = t + h.offset;
+    hits.forEach(h => {
+      const hitTime = t + h.dt;
       const g = this.ctx.createGain();
       g.gain.setValueAtTime(0.0001, hitTime);
-      g.gain.linearRampToValueAtTime(h.vol, hitTime + 0.004); // Finger pluck transient
+      g.gain.linearRampToValueAtTime(h.vol, hitTime + 0.004);
       g.gain.exponentialRampToValueAtTime(0.0001, hitTime + h.dur);
 
-      // Bass Cabinet & Pickup Emulation (Ampeg SVT cabinet curve)
       const cab = this.ctx.createBiquadFilter();
       cab.type = 'lowpass';
-      cab.frequency.setValueAtTime(h.slap ? 1100 : 750, hitTime);
-      cab.frequency.exponentialRampToValueAtTime(320, hitTime + h.dur);
-      cab.Q.value = 1.6;
+      cab.frequency.setValueAtTime(650, hitTime);
 
-      const bodyRes = this.ctx.createBiquadFilter();
-      bodyRes.type = 'peaking';
-      bodyRes.frequency.value = 120;
-      bodyRes.gain.value = 4;
-
-      // Finger Pluck Attack thump
-      const thump = this.ctx.createOscillator();
-      thump.type = 'sine';
-      thump.frequency.setValueAtTime(140, hitTime);
-      thump.frequency.exponentialRampToValueAtTime(h.f, hitTime + 0.02);
-      const thumpG = this.ctx.createGain();
-      thumpG.gain.setValueAtTime(h.vol * 0.6, hitTime);
-      thumpG.gain.exponentialRampToValueAtTime(0.0001, hitTime + 0.035);
-      thump.connect(thumpG);
-      thumpG.connect(cab);
-      thump.start(hitTime); thump.stop(hitTime + 0.04);
-
-      // Dual pickups (Neck warm triangle + Bridge punchy saw)
       const o1 = this.ctx.createOscillator();
       o1.type = 'triangle';
       o1.frequency.setValueAtTime(h.f, hitTime);
 
       const o2 = this.ctx.createOscillator();
-      o2.type = 'sawtooth';
-      o2.frequency.setValueAtTime(h.f, hitTime);
-      const o2G = this.ctx.createGain();
-      o2G.gain.value = 0.28;
-      o2.connect(o2G);
+      o2.type = 'sine';
+      o2.frequency.setValueAtTime(h.f * 2, hitTime);
+      const o2g = this.ctx.createGain(); o2g.gain.value = 0.25;
 
-      const sat = this.ctx.createWaveShaper();
-      sat.curve = this._warmSatCurve;
-
-      o1.connect(sat);
-      o2G.connect(sat);
-      sat.connect(bodyRes);
-      bodyRes.connect(cab);
+      o1.connect(cab);
+      o2.connect(o2g);
+      o2g.connect(cab);
       cab.connect(g);
 
       const dg = this.ctx.createGain(); dg.gain.value = 1.0;
-      const wg = this.ctx.createGain(); wg.gain.value = 0.12; // Tight bass, subtle room
+      const wg = this.ctx.createGain(); wg.gain.value = 0.1;
       g.connect(dg); dg.connect(this.dryBus);
       g.connect(wg); wg.connect(this.wetBus);
 
-      o1.start(hitTime); o1.stop(hitTime + h.dur + 0.05);
-      o2.start(hitTime); o2.stop(hitTime + h.dur + 0.05);
+      o1.start(hitTime); o1.stop(hitTime + h.dur + 0.02);
+      o2.start(hitTime); o2.stop(hitTime + h.dur + 0.02);
     });
   }
 
   funkyClavinet(beat, bar, t) {
-    // Nile Rodgers Clean Disco Rhythm Guitar ("Chucking" strum pattern)
+    // Nile Rodgers Rhythm Guitar (optimized 2-strum rhythm)
     const chord = CHORD_TONES[beat % 4];
-    // Funky 16th chuck pattern: 1, 2-and, 3-e-and, 4
-    const pattern = [
-      { dt: 0, muted: false, vol: 0.14 },
-      { dt: SPB * 0.25, muted: true, vol: 0.11 },
-      { dt: SPB * 0.5, muted: false, vol: 0.13 },
-      { dt: SPB * 0.75, muted: true, vol: 0.11 }
-    ];
+    const n1 = midiToHz(chord[1] + 12);
+    const n2 = midiToHz(chord[2] + 12);
 
-    pattern.forEach(p => {
-      const pTime = t + p.dt;
-      // Strum upper 3 strings of the chord (typical funk disco rhythm technique)
-      chord.slice(1, 4).forEach((n, idx) => {
-        const strTime = pTime + idx * 0.0035;
-        this._guitarNote(midiToHz(n + 12), strTime, 0.18, p.vol, p.muted, 0.28);
-      });
-    });
+    this._guitarNote(n1, t, 0.16, 0.14, false, 0.22);
+    this._guitarNote(n2, t + 0.004, 0.16, 0.14, false, 0.22);
+
+    // Syncopated offbeat muted chuck
+    this._guitarNote(n1, t + SPB * 0.5, 0.08, 0.11, true, 0.15);
+    this._guitarNote(n2, t + SPB * 0.5 + 0.004, 0.08, 0.11, true, 0.15);
   }
 
   discoChord(beat, bar, t) {
     if (beat !== 0) return;
-    // Classic Fender Rhodes Mark I 73 Electric Piano with bell harmonics and stereo tremolo
+    // Fender Rhodes Piano (warm sine+tine, 1 chord per 4 beats)
     const chord = CHORD_TONES[bar % 4];
     const dur = LOOP * 0.95;
 
     chord.forEach((n, i) => {
       const freq = midiToHz(n);
-      const noteTime = t + i * 0.008; // Arpeggiated finger roll
+      const noteTime = t + i * 0.006;
 
       const g = this.ctx.createGain();
       g.gain.setValueAtTime(0.0001, noteTime);
-      g.gain.linearRampToValueAtTime(0.12, noteTime + 0.015);
-      g.gain.exponentialRampToValueAtTime(0.05, noteTime + 0.6);
+      g.gain.linearRampToValueAtTime(0.12, noteTime + 0.012);
       g.gain.exponentialRampToValueAtTime(0.0001, noteTime + dur);
 
-      // Rhodes Tine Bell Tone (metallic sine partial at 7x fundamental)
-      const tine = this.ctx.createOscillator();
-      tine.type = 'sine';
-      tine.frequency.setValueAtTime(freq * 7.1, noteTime);
-      const tineG = this.ctx.createGain();
-      tineG.gain.setValueAtTime(0.035, noteTime);
-      tineG.gain.exponentialRampToValueAtTime(0.0001, noteTime + 0.18);
-      tine.connect(tineG);
-
-      // Rhodes Tone Bar (Main body: Sine + subtle 2nd & 3rd harmonic)
-      const o1 = this.ctx.createOscillator();
-      o1.type = 'sine';
-      o1.frequency.setValueAtTime(freq, noteTime);
-
-      const o2 = this.ctx.createOscillator();
-      o2.type = 'triangle';
-      o2.frequency.setValueAtTime(freq * 2, noteTime);
-      const o2G = this.ctx.createGain();
-      o2G.gain.value = 0.22;
-      o2.connect(o2G);
-
-      // Warm preamp lowpass
       const lp = this.ctx.createBiquadFilter();
-      lp.type = 'lowpass';
-      lp.frequency.value = 2400;
+      lp.type = 'lowpass'; lp.frequency.value = 2200;
 
-      o1.connect(lp);
-      o2G.connect(lp);
-      tineG.connect(lp);
+      const o = this.ctx.createOscillator();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(freq, noteTime);
+
+      o.connect(lp);
       lp.connect(g);
 
       const dg = this.ctx.createGain(); dg.gain.value = 0.8;
-      const wg = this.ctx.createGain(); wg.gain.value = 0.45;
+      const wg = this.ctx.createGain(); wg.gain.value = 0.35;
       g.connect(dg); dg.connect(this.dryBus);
       g.connect(wg); wg.connect(this.wetBus);
 
-      tine.start(noteTime); tine.stop(noteTime + 0.2);
-      o1.start(noteTime); o1.stop(noteTime + dur + 0.1);
-      o2.start(noteTime); o2.stop(noteTime + dur + 0.1);
+      o.start(noteTime); o.stop(noteTime + dur + 0.05);
     });
   }
 
@@ -1535,81 +1382,185 @@ function buildDiscoBall() {
   setInterval(()=>{ ang+=0.3; ball.style.transform=`translateX(-50%) rotate(${ang}deg)`; },30);
 }
 
-/* --- Characters --- */
+/* --- Characters (Manga 70s Disco Style) --- */
 function buildCharSVG(ch, charId) {
-  // Simple cartoon character — large head, 70s style clothes
-  const s = ch.skin, h=ch.hair, d=ch.dress, b=ch.belt, sh=ch.shoe;
-  return `<svg viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- shadow -->
-  <ellipse cx="40" cy="158" rx="22" ry="4" fill="rgba(0,0,0,.3)"/>
-  <!-- LEGS / FLARES -->
-  <rect x="22" y="108" width="14" height="40" rx="4" fill="${d}"/>
-  <rect x="44" y="108" width="14" height="40" rx="4" fill="${d}"/>
-  <!-- bell-bottoms flare -->
-  <polygon points="22,140 14,158 29,158" fill="${d}"/>
-  <polygon points="58,140 66,158 51,158" fill="${d}"/>
-  <!-- shoes -->
-  <ellipse cx="21" cy="157" rx="10" ry="4" fill="${sh}"/>
-  <ellipse cx="59" cy="157" rx="10" ry="4" fill="${sh}"/>
-  <!-- BODY -->
-  <rect x="20" y="72" width="40" height="40" rx="8" fill="${d}"/>
-  <!-- belt -->
-  <rect x="20" y="104" width="40" height="6" rx="2" fill="${b}"/>
-  <rect x="36" y="103" width="8" height="8" rx="2" fill="${b}" opacity=".7"/>
-  <!-- ARMS -->
-  <rect class="arm-l" x="6"  y="74" width="12" height="32" rx="6" fill="${s}" id="arm-l-${charId}"/>
-  <rect class="arm-r" x="62" y="74" width="12" height="32" rx="6" fill="${s}" id="arm-r-${charId}"/>
-  <!-- collar / shirt detail -->
-  <polygon points="34,72 46,72 40,84" fill="rgba(255,255,255,.18)"/>
-  <!-- NECK -->
-  <rect x="34" y="62" width="12" height="12" rx="4" fill="${s}"/>
-  <!-- HEAD -->
-  <circle cx="40" cy="44" r="28" fill="${s}" id="head-${charId}"/>
-  <!-- Hair -->
-  <ellipse cx="40" cy="20" rx="22" ry="12" fill="${h}" id="hair-${charId}"/>
-  <!-- EYES -->
-  <ellipse cx="31" cy="42" rx="5" ry="6" fill="white"/>
-  <ellipse cx="49" cy="42" rx="5" ry="6" fill="white"/>
-  <circle cx="32" cy="43" r="3" fill="#1A1A2E" id="eye-l-${charId}"/>
-  <circle cx="50" cy="43" r="3" fill="#1A1A2E" id="eye-r-${charId}"/>
-  <!-- eye shine -->
-  <circle cx="33" cy="42" r="1" fill="white"/>
-  <circle cx="51" cy="42" r="1" fill="white"/>
-  <!-- NOSE -->
-  <ellipse cx="40" cy="50" rx="3" ry="2" fill="${s}" style="filter:brightness(.85)"/>
-  <!-- MOUTH -->
-  <path d="M33 57 Q40 63 47 57" stroke="#C47" stroke-width="2" fill="none" stroke-linecap="round" id="mouth-${charId}"/>
-  <!-- cheeks -->
-  <circle cx="26" cy="52" r="5" fill="#FF8C94" opacity=".35"/>
-  <circle cx="54" cy="52" r="5" fill="#FF8C94" opacity=".35"/>
-  <!-- accessory layer (empty, filled by JS) -->
+  const s = ch.skin, h = ch.hair, d = ch.dress, b = ch.belt, sh = ch.shoe, eye = ch.eye || '#2A9D8F', shirt = ch.shirt || '#FFFFFF';
+  const isFemale = ch.gender === 'f';
+
+  return `<svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Shading Gradients for Manga Aesthetic -->
+    <linearGradient id="skinGrad-${charId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${s}"/>
+      <stop offset="100%" stop-color="${s}" stop-opacity="0.82"/>
+    </linearGradient>
+    <linearGradient id="hairGrad-${charId}" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${h}"/>
+      <stop offset="60%" stop-color="${h}"/>
+      <stop offset="100%" stop-color="#0F0C20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Stage shadow -->
+  <ellipse cx="50" cy="196" rx="30" ry="4" fill="rgba(0,0,0,0.45)"/>
+
+  <!-- 70s BELL-BOTTOM FLARED TROUSERS / JUMPSUIT LEGS -->
+  <g class="legs-group">
+    <!-- Left Leg: high waist to wide 70s flare -->
+    <path d="M33 118 L24 165 L12 192 L38 192 L42 165 L46 118 Z" fill="${d}" stroke="#100A1C" stroke-width="1.8"/>
+    <!-- Right Leg -->
+    <path d="M54 118 L58 165 L62 192 L88 192 L76 165 L67 118 Z" fill="${d}" stroke="#100A1C" stroke-width="1.8"/>
+    <!-- Crease lines in trousers for classic 70s polyester tailoring -->
+    <line x1="26" y1="130" x2="25" y2="190" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+    <line x1="74" y1="130" x2="75" y2="190" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  </g>
+
+  <!-- 70s PLATFORM SHOES -->
+  <g class="shoes-group">
+    <!-- Left Platform Shoe -->
+    <path d="M11 192 L37 192 L38 197 L10 197 Z" fill="#D4AF37"/>
+    <rect class="foot-l" id="foot-l-${charId}" x="10" y="188" width="28" height="5" rx="2.5" fill="${sh}" stroke="#100A1C" stroke-width="1.5" transform-origin="24 190"/>
+    <!-- Right Platform Shoe -->
+    <path d="M63 192 L89 192 L90 197 L62 197 Z" fill="#D4AF37"/>
+    <rect class="foot-r" id="foot-r-${charId}" x="62" y="188" width="28" height="5" rx="2.5" fill="${sh}" stroke="#100A1C" stroke-width="1.5" transform-origin="76 190"/>
+  </g>
+
+  <!-- 70s RETRO TORSO / SHIRT / JACKET -->
+  <g class="torso-group">
+    <!-- Base Shirt / Blouse -->
+    <path d="M28 72 L72 72 L67 118 L33 118 Z" fill="${shirt}" stroke="#100A1C" stroke-width="1.8"/>
+    
+    <!-- 70s Open Vest or Wide Lapel Disco Jacket -->
+    <path d="M26 72 L42 72 L36 118 L28 118 Z" fill="${d}" stroke="#100A1C" stroke-width="1.5"/>
+    <path d="M74 72 L58 72 L64 118 L72 118 Z" fill="${d}" stroke="#100A1C" stroke-width="1.5"/>
+
+    <!-- Wide 70s Butterfly Collars -->
+    <polygon points="40,72 26,88 38,84" fill="${shirt}" stroke="#100A1C" stroke-width="1.5"/>
+    <polygon points="60,72 74,88 62,84" fill="${shirt}" stroke="#100A1C" stroke-width="1.5"/>
+
+    <!-- V-Neck Skin Opening -->
+    <polygon points="43,72 57,72 50,86" fill="url(#skinGrad-${charId})"/>
+
+    <!-- Gold Chain / Medallion on Chest -->
+    <path d="M44 74 Q50 82 56 74" stroke="#FFD700" stroke-width="1.2" fill="none"/>
+    <circle cx="50" cy="82" r="2.2" fill="#FFD700" stroke="#B8860B" stroke-width="0.8"/>
+
+    <!-- 70s Wide Statement Belt & Big Buckle -->
+    <rect x="31" y="112" width="38" height="9" rx="2" fill="${b}" stroke="#100A1C" stroke-width="1.5"/>
+    <rect x="44" y="110" width="12" height="13" rx="2.5" fill="#FFD700" stroke="#B8860B" stroke-width="1.5"/>
+    <circle cx="50" cy="116.5" r="2.5" fill="${b}"/>
+  </g>
+
+  <!-- ARMS & HANDS (Slender Manga Proportions) -->
+  <g class="arms-group">
+    <!-- Left Arm -->
+    <rect class="arm-l" id="arm-l-${charId}" x="14" y="74" width="13" height="42" rx="6.5" fill="${shirt}" stroke="#100A1C" stroke-width="1.6" transform-origin="20 78"/>
+    <!-- Left Hand -->
+    <circle cx="20.5" cy="119" r="5" fill="url(#skinGrad-${charId})" stroke="#100A1C" stroke-width="1.2"/>
+
+    <!-- Right Arm -->
+    <rect class="arm-r" id="arm-r-${charId}" x="73" y="74" width="13" height="42" rx="6.5" fill="${shirt}" stroke="#100A1C" stroke-width="1.6" transform-origin="80 78"/>
+    <!-- Right Hand -->
+    <circle cx="79.5" cy="119" r="5" fill="url(#skinGrad-${charId})" stroke="#100A1C" stroke-width="1.2"/>
+  </g>
+
+  <!-- MANGA HEAD & FACE (Distinct jawline, big anime eyes with highlights) -->
+  <g class="head-group" id="head-${charId}" transform-origin="50 48">
+    <!-- Slender Neck -->
+    <path d="M43 56 L57 56 L58 72 L42 72 Z" fill="url(#skinGrad-${charId})" stroke="#100A1C" stroke-width="1.5"/>
+    <!-- Neck shadow under chin -->
+    <polygon points="44,57 56,57 50,65" fill="rgba(0,0,0,0.18)"/>
+
+    <!-- Manga Face Contour (Tapered chin, defined cheeks) -->
+    <path d="M28 35 C28 18, 72 18, 72 35 C72 48, 64 61, 50 64 C36 61, 28 48, 28 35 Z" fill="url(#skinGrad-${charId})" stroke="#100A1C" stroke-width="1.8"/>
+
+    <!-- MANGA EYES -->
+    <!-- Left Eye -->
+    <g class="eye-left">
+      <!-- Upper Lash Line (Sharp Manga wing) -->
+      <path d="M34 38 Q40 33 46 38" stroke="#100A1C" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Eye White & Iris -->
+      <ellipse cx="40" cy="41" rx="5.5" ry="5" fill="#FFFFFF"/>
+      <ellipse cx="40" cy="41" rx="4" ry="4.5" fill="${eye}"/>
+      <circle cx="40" cy="41" r="2.2" fill="#0E071A"/>
+      <!-- Highlights (Sparkling Anime Sheen) -->
+      <circle cx="38.5" cy="39" r="1.6" fill="#FFFFFF"/>
+      <circle cx="42" cy="43" r="0.8" fill="#FFFFFF"/>
+      <!-- Lower subtle eyelid -->
+      <path d="M36 45 Q40 47 44 45" stroke="#100A1C" stroke-width="0.9" fill="none"/>
+      <!-- Eyebrow -->
+      <path d="M33 33 Q40 30 46 34" stroke="${h}" stroke-width="${isFemale ? '1.5' : '2.2'}" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- Right Eye -->
+    <g class="eye-right">
+      <path d="M54 38 Q60 33 66 38" stroke="#100A1C" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="60" cy="41" rx="5.5" ry="5" fill="#FFFFFF"/>
+      <ellipse cx="60" cy="41" rx="4" ry="4.5" fill="${eye}"/>
+      <circle cx="60" cy="41" r="2.2" fill="#0E071A"/>
+      <circle cx="58.5" cy="39" r="1.6" fill="#FFFFFF"/>
+      <circle cx="62" cy="43" r="0.8" fill="#FFFFFF"/>
+      <path d="M56 45 Q60 47 64 45" stroke="#100A1C" stroke-width="0.9" fill="none"/>
+      <path d="M54 34 Q60 30 67 33" stroke="${h}" stroke-width="${isFemale ? '1.5' : '2.2'}" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- Manga Nose (Subtle elegant line) -->
+    <path d="M50 45 L48 51 L51 51" stroke="#BD8261" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Anime Mouth -->
+    <path id="mouth-${charId}" d="M44 56 Q50 60 56 56" stroke="#B84A62" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+    <!-- Subtle Manga Cheek Blushes -->
+    <ellipse cx="33" cy="48" rx="4" ry="2.2" fill="#FF8A8A" opacity="0.38"/>
+    <ellipse cx="67" cy="48" rx="4" ry="2.2" fill="#FF8A8A" opacity="0.38"/>
+
+    <!-- 70s MANGA HAIRSTYLES (Feathered Farrah Fawcett waves, Shag, layered disco spikes, Afro-cut) -->
+    <g class="hair-group" id="hair-${charId}">
+      ${isFemale ? `
+        <!-- Voluminous 70s Feathered Waves & Bangs (Manga Shōjo/Disco style) -->
+        <!-- Hair volume back -->
+        <path d="M24 35 C18 10, 82 10, 76 35 C82 52, 78 70, 72 74 C66 58, 68 40, 68 35 C32 35, 34 58, 28 74 C22 70, 18 52, 24 35 Z" fill="url(#hairGrad-${charId})" stroke="#100A1C" stroke-width="1.8"/>
+        <!-- Front parted feathered bangs -->
+        <path d="M30 26 Q40 18 50 26 Q60 18 70 26 Q56 36 50 30 Q44 36 30 26 Z" fill="url(#hairGrad-${charId})" stroke="#100A1C" stroke-width="1.4"/>
+        <!-- Hair shine ring (Angel Ring / Anime Tenshi no Wa) -->
+        <path d="M34 22 Q50 16 66 22" stroke="rgba(255,255,255,0.45)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      ` : `
+        <!-- 70s Manga Shag / Mullet with dynamic layered spikes -->
+        <path d="M26 34 C20 14, 80 14, 74 34 C80 48, 76 68, 70 72 C68 56, 68 42, 66 38 C34 38, 34 56, 30 72 C24 68, 20 48, 26 34 Z" fill="url(#hairGrad-${charId})" stroke="#100A1C" stroke-width="1.8"/>
+        <!-- Dynamic jagged manga locks in front -->
+        <path d="M28 28 L38 35 L44 26 L52 36 L58 26 L66 35 L72 26 L64 16 L36 16 Z" fill="url(#hairGrad-${charId})" stroke="#100A1C" stroke-width="1.4"/>
+        <!-- Highlight -->
+        <path d="M38 20 Q50 15 62 20" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      `}
+    </g>
+  </g>
+
+  <!-- Accessory Dynamic Slot (Filled by sound assignment) -->
   <g id="acc-${charId}"></g>
-  <!-- leg anim elements -->
-  <rect class="foot-l" x="23" y="148" width="10" height="4" rx="2" fill="${sh}" id="foot-l-${charId}" transform-origin="23 150"/>
   </svg>`;
 }
 
 const ACCESSORY_SVG = {
-  cap:        (c)=>`<path d="M20 30 Q40 10 60 30" stroke="${c||'#FFD700'}" stroke-width="6" fill="${c||'#FFD700'}" stroke-linecap="round"/><rect x="10" y="30" width="60" height="8" rx="4" fill="${c||'#FFD700'}"/>`,
-  sunglasses: ()=>`<rect x="22" y="40" width="14" height="10" rx="4" fill="#1A1A2E" stroke="#FFD700" stroke-width="2"/><rect x="44" y="40" width="14" height="10" rx="4" fill="#1A1A2E" stroke="#FFD700" stroke-width="2"/><line x1="36" y1="45" x2="44" y2="45" stroke="#FFD700" stroke-width="2"/>`,
-  cap2:       ()=>`<ellipse cx="40" cy="22" rx="24" ry="10" fill="#EC4899"/><rect x="16" y="20" width="48" height="6" rx="3" fill="#EC4899"/><rect x="10" y="24" width="10" height="4" rx="2" fill="#EC4899"/>`,
-  mask:       ()=>`<rect x="22" y="38" width="36" height="20" rx="8" fill="#1A1A2E" opacity=".9"/><line x1="30" y1="48" x2="50" y2="48" stroke="#EF4444" stroke-width="2"/>`,
-  headband:   ()=>`<rect x="16" y="24" width="48" height="8" rx="4" fill="#22D3EE"/>`,
-  headphones: ()=>`<path d="M18 44 Q40 18 62 44" stroke="#A855F7" stroke-width="6" fill="none"/><rect x="12" y="40" width="10" height="14" rx="4" fill="#A855F7"/><rect x="58" y="40" width="10" height="14" rx="4" fill="#A855F7"/>`,
-  chain:      ()=>`<path d="M28 70 Q40 80 52 70" stroke="#FFD700" stroke-width="3" fill="none"/><circle cx="40" cy="80" r="4" fill="#FFD700"/>`,
-  jacket:     ()=>`<rect x="16" y="68" width="12" height="40" rx="4" fill="#EF4444"/><rect x="52" y="68" width="12" height="40" rx="4" fill="#EF4444"/>`,
-  visor:      ()=>`<rect x="16" y="30" width="48" height="14" rx="6" fill="#22D3EE" opacity=".7"/><rect x="20" y="32" width="40" height="8" rx="4" fill="#0EA5E9" opacity=".5"/>`,
-  robot_head: ()=>`<rect x="22" y="20" width="36" height="30" rx="4" fill="#374151" stroke="#22D3EE" stroke-width="2"/><rect x="27" y="27" width="10" height="8" rx="2" fill="#22D3EE" opacity=".8"/><rect x="43" y="27" width="10" height="8" rx="2" fill="#22D3EE" opacity=".8"/><rect x="30" y="38" width="20" height="4" rx="2" fill="#34D399"/>`,
-  collar:     ()=>`<polygon points="34,70 46,70 50,80 30,80" fill="#FFD700" opacity=".7"/>`,
-  scarf:      ()=>`<path d="M28 70 Q40 60 52 70 Q48 80 40 85 Q32 80 28 70Z" fill="#EC4899"/>`,
-  bow_tie:    ()=>`<polygon points="30,72 40,78 50,72 40,66" fill="#A855F7"/>`,
-  belt:       ()=>`<rect x="18" y="104" width="44" height="7" rx="2" fill="#FFD700"/><rect x="35" y="103" width="10" height="9" rx="2" fill="#B8860B"/>`,
-  wristband:  ()=>`<rect x="4" y="96" width="14" height="8" rx="3" fill="#EF4444"/><rect x="62" y="96" width="14" height="8" rx="3" fill="#EF4444"/>`,
-  microphone: (c,charId)=>`<rect x="36" y="58" width="8" height="16" rx="4" fill="#6B7280" id="mic-${charId}"/><ellipse cx="40" cy="58" rx="6" ry="6" fill="#374151"/>`,
-  afro:       (c)=>`<ellipse cx="40" cy="22" rx="28" ry="20" fill="${c||'#8B4513'}"/>`,
-  big_hat:    ()=>`<ellipse cx="40" cy="20" rx="28" ry="6" fill="#1A1A2E"/><rect x="24" y="4" width="32" height="18" rx="6" fill="#1A1A2E"/>`,
-  bandana:    ()=>`<path d="M18 30 Q40 20 62 30 L60 38 Q40 28 20 38Z" fill="#EF4444"/>`,
-  antenna:    ()=>`<line x1="40" y1="16" x2="40" y2="2" stroke="#A855F7" stroke-width="3"/><circle cx="40" cy="2" r="4" fill="#EC4899"/>`,
+  cap:        (c)=>`<path d="M26 26 Q50 12 74 26" stroke="#E9C46A" stroke-width="5" fill="#E9C46A" stroke-linecap="round"/><path d="M18 26 Q50 20 82 26" stroke="#264653" stroke-width="3" fill="none"/>`,
+  sunglasses: ()=>`<path d="M28 39 L46 39 L43 49 L31 49 Z" fill="#1A1A2E" stroke="#FFD700" stroke-width="1.8"/><path d="M54 39 L72 39 L69 49 L57 49 Z" fill="#1A1A2E" stroke="#FFD700" stroke-width="1.8"/><line x1="46" y1="41" x2="54" y2="41" stroke="#FFD700" stroke-width="2"/>`,
+  cap2:       ()=>`<ellipse cx="50" cy="22" rx="26" ry="9" fill="#EC4899"/><rect x="22" y="20" width="56" height="5" rx="2.5" fill="#EC4899"/><path d="M70 22 L86 26" stroke="#EC4899" stroke-width="3.5" stroke-linecap="round"/>`,
+  mask:       ()=>`<path d="M30 46 Q50 54 70 46 L68 62 Q50 68 32 62 Z" fill="#1D3557" stroke="#E63946" stroke-width="1.6" opacity="0.95"/>`,
+  headband:   ()=>`<path d="M26 29 Q50 24 74 29" stroke="#E63946" stroke-width="6" fill="none" stroke-linecap="round"/>`,
+  headphones: ()=>`<path d="M25 45 Q50 18 75 45" stroke="#A855F7" stroke-width="4.5" fill="none"/><rect x="18" y="40" width="9" height="15" rx="4" fill="#A855F7"/><rect x="73" y="40" width="9" height="15" rx="4" fill="#A855F7"/>`,
+  chain:      ()=>`<path d="M36 78 Q50 96 64 78" stroke="#FFD700" stroke-width="2" fill="none"/><circle cx="50" cy="96" r="4.5" fill="#FFD700" stroke="#B8860B" stroke-width="1"/>`,
+  jacket:     ()=>`<path d="M22 72 L36 72 L30 118 L20 118 Z" fill="#EF4444" stroke="#100A1C" stroke-width="1.5"/><path d="M78 72 L64 72 L70 118 L80 118 Z" fill="#EF4444" stroke="#100A1C" stroke-width="1.5"/>`,
+  visor:      ()=>`<path d="M26 36 L74 36 L70 46 L30 46 Z" fill="#22D3EE" opacity="0.75" stroke="#0EA5E9" stroke-width="1.5"/>`,
+  robot_head: ()=>`<rect x="30" y="24" width="40" height="30" rx="4" fill="#374151" stroke="#22D3EE" stroke-width="2"/><rect x="36" y="32" width="10" height="8" rx="2" fill="#22D3EE"/><rect x="54" y="32" width="10" height="8" rx="2" fill="#22D3EE"/>`,
+  collar:     ()=>`<polygon points="40,72 50,86 60,72 68,72 50,92 32,72" fill="#FFD700" stroke="#B8860B" stroke-width="1"/>`,
+  scarf:      ()=>`<path d="M38 72 Q50 64 62 72 Q56 94 50 102 Q44 94 38 72 Z" fill="#E76F51" stroke="#100A1C" stroke-width="1.2"/>`,
+  bow_tie:    ()=>`<polygon points="42,74 50,78 58,74 58,82 50,78 42,82" fill="#7209B7" stroke="#100A1C" stroke-width="1"/>`,
+  belt:       ()=>`<rect x="30" y="111" width="40" height="10" rx="2" fill="#FFD700" stroke="#B8860B" stroke-width="1.5"/><rect x="45" y="109" width="10" height="14" rx="2" fill="#E63946"/>`,
+  wristband:  ()=>`<rect x="15" y="110" width="11" height="6" rx="2" fill="#EF4444"/><rect x="74" y="110" width="11" height="6" rx="2" fill="#EF4444"/>`,
+  microphone: (c,charId)=>`<rect x="46" y="60" width="8" height="18" rx="4" fill="#6B7280" id="mic-${charId}" stroke="#100A1C" stroke-width="1"/><circle cx="50" cy="59" r="6" fill="#374151" stroke="#9CA3AF" stroke-width="1"/>`,
+  afro:       (c)=>`<ellipse cx="50" cy="30" rx="36" ry="28" fill="${c||'#2C2A4A'}" stroke="#100A1C" stroke-width="2"/>`,
+  big_hat:    ()=>`<ellipse cx="50" cy="24" rx="36" ry="8" fill="#1D3557" stroke="#100A1C" stroke-width="1.5"/><rect x="34" y="8" width="32" height="18" rx="6" fill="#1D3557" stroke="#100A1C" stroke-width="1.5"/>`,
+  bandana:    ()=>`<path d="M26 30 Q50 20 74 30 L72 38 Q50 28 28 38 Z" fill="#E63946" stroke="#100A1C" stroke-width="1.2"/>`,
+  antenna:    ()=>`<line x1="50" y1="18" x2="50" y2="4" stroke="#A855F7" stroke-width="2.5"/><circle cx="50" cy="4" r="4.5" fill="#EC4899" stroke="#100A1C" stroke-width="1"/>`,
 };
 
 function renderAccessory(charId, soundId) {
@@ -1910,6 +1861,13 @@ function deactivateSolo() {
 async function startPlayback() {
   await engine.init();
   if (engine.ctx.state === 'suspended') await engine.ctx.resume();
+
+  // Pre-load all samples for active sounds in background
+  Object.values(state.assignments).forEach(sid => {
+    const s = SOUNDS.find(item => item.id === sid);
+    if (s) engine.loadSample(s);
+  });
+
   engine.start();
   state.playing = true;
   document.getElementById('btn-play').classList.add('active');
@@ -1996,24 +1954,24 @@ function animateChar(charId, anim, beat) {
   };
 
   if (anim === 'beat') {
-    pulse(head, 'transform', 'translateY(0)', 'translateY(-5px)', 100);
+    pulse(head, 'transform', 'translateY(0)', 'translateY(-6px)', 100);
     if (beat % 2 === 0) pulse(foot, 'transform', 'rotate(0deg)', 'rotate(10deg)', 100);
   } else if (anim === 'effect') {
     pulse(armL, 'transform', 'rotate(0deg)', 'rotate(-25deg)', 120);
     pulse(armR, 'transform', 'rotate(0deg)', 'rotate(25deg)',  120);
     pulse(svgWrap.parentElement, 'transform', 'scale(1)', 'scale(1.04)', 100);
   } else if (anim === 'melody') {
-    pulse(svgWrap.parentElement, 'transform', 'rotate(0deg)', 'rotate(2deg)', 150);
+    pulse(svgWrap.parentElement, 'transform', 'rotate(0deg)', 'rotate(2.5deg)', 150);
     pulse(head, 'transform', 'translateX(0)', 'translateX(3px)', 150);
   } else if (anim === 'voice') {
     if (mouth) {
       mouth.style.transition = 'd 100ms';
-      const open  = `M33 55 Q40 65 47 55`;
-      const close = `M33 57 Q40 63 47 57`;
+      const open  = `M44 54 Q50 64 56 54`;
+      const close = `M44 56 Q50 60 56 56`;
       mouth.setAttribute('d', open);
       setTimeout(() => mouth.setAttribute('d', close), 120);
     }
-    pulse(armR, 'transform', 'rotate(0deg)', 'rotate(-15deg)', 100);
+    pulse(armR, 'transform', 'rotate(0deg)', 'rotate(-18deg)', 100);
   }
 }
 
