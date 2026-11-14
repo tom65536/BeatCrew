@@ -486,6 +486,7 @@ class AudioEngine {
     this.initialized  = false;
     this.sampleBuffers= {};   // soundId -> AudioBuffer (loaded external audio assets)
     this.sampleLoadAttempted = new Set();
+    this.activeSourceNodes = {}; // charId -> AudioBufferSourceNode (currently playing sample instance)
   }
 
   // Pre-load an external audio sample from /sounds/ folder (.mp3 / .wav / .ogg)
@@ -502,7 +503,7 @@ class AudioEngine {
           const arrayBuf = await res.arrayBuffer();
           const audioBuf = await this.ctx.decodeAudioData(arrayBuf);
           this.sampleBuffers[sound.id] = audioBuf;
-          console.log(`🎵 [BeatCrew] Loaded sample for ${sound.name}: ${url}`);
+          console.log(`🎵 [BeatCrew] Loaded sample for ${sound.name}: ${url} (length: ${audioBuf.duration.toFixed(2)}s)`);
           return;
         }
       } catch (err) {
@@ -511,12 +512,37 @@ class AudioEngine {
     }
   }
 
+  // Stop currently playing sample node for a specific character slot
+  _stopSlotSample(charId) {
+    if (this.activeSourceNodes[charId]) {
+      try {
+        this.activeSourceNodes[charId].stop();
+        this.activeSourceNodes[charId].disconnect();
+      } catch (e) {}
+      delete this.activeSourceNodes[charId];
+    }
+  }
+
   // Play an external audio loop sample or trigger procedural fallback
-  _playSampleNode(sound, beat, bar, t) {
+  _playSampleNode(sound, charId, beat, bar, t) {
     const buf = this.sampleBuffers[sound.id];
-    // If the loop sample is 4 beats (2.0s) or 16 beats (8.0s), only trigger at the start of loop cycle
-    const isMultiBar = buf.duration > SPB * 1.5;
-    if (isMultiBar && beat !== 0) return;
+    const durInBeats = buf.duration / SPB;
+
+    // Detect how many bars this sample spans:
+    // If > 6 beats (~3s+), it is a 4-bar loop (16 beats).
+    // If <= 6 beats, it is a 1-bar loop (4 beats).
+    const isFourBarLoop = durInBeats > 6.0;
+
+    // If it's a 4-bar loop, only retrigger at the start of a 4-bar cycle (bar % 4 === 0 && beat === 0)
+    if (isFourBarLoop) {
+      if (bar % 4 !== 0 || beat !== 0) return;
+    } else {
+      // 1-bar loop: trigger on beat 0 of each bar
+      if (beat !== 0) return;
+    }
+
+    // Stop any previous instance on this character slot so samples never overlap
+    this._stopSlotSample(charId);
 
     const src = this.ctx.createBufferSource();
     src.buffer = buf;
@@ -528,6 +554,13 @@ class AudioEngine {
     g.connect(this.dryBus);
 
     src.start(t);
+    this.activeSourceNodes[charId] = src;
+
+    src.onended = () => {
+      if (this.activeSourceNodes[charId] === src) {
+        delete this.activeSourceNodes[charId];
+      }
+    };
   }
 
   async init() {
@@ -643,6 +676,8 @@ class AudioEngine {
     this.playing = false;
     clearInterval(this.schedTimer);
     this.master.gain.setTargetAtTime(0.001, this.ctx.currentTime, 0.25);
+    // Stop all active sample playback nodes
+    Object.keys(this.activeSourceNodes).forEach(cid => this._stopSlotSample(cid));
     this.beat = 0;
     this.bar  = 0;
   }
@@ -668,9 +703,13 @@ class AudioEngine {
       // Schedule notes natively ahead in Web Audio graph
       for (const [charIdStr, soundId] of Object.entries(this.activeSlots)) {
         const charId = parseInt(charIdStr);
-        if (!this._isAudible(charId)) continue;
+        if (!this._isAudible(charId)) {
+          // If muted or not soloed, ensure any long sample is silenced
+          this._stopSlotSample(charId);
+          continue;
+        }
         const sound = SOUNDS.find(s => s.id === soundId);
-        if (sound) this._playSound(sound, beat, bar, t);
+        if (sound) this._playSound(sound, charId, beat, bar, t);
       }
 
       this.transport.nextBeatTime += SPB;
@@ -685,10 +724,10 @@ class AudioEngine {
     return true;
   }
 
-  _playSound(sound, beat, bar, t) {
+  _playSound(sound, charId, beat, bar, t) {
     // If an external sample asset exists for this sound, play it with 0% synth CPU overhead
     if (this.sampleBuffers[sound.id]) {
-      this._playSampleNode(sound, beat, bar, t);
+      this._playSampleNode(sound, charId, beat, bar, t);
       return;
     }
     // Asynchronous background attempt to fetch sample if not tried yet
@@ -1793,6 +1832,8 @@ function assignSound(charId, soundId) {
 function removeSound(charId) {
   const soundId = state.assignments[charId];
   if (!soundId) return;
+  // Stop sample playback immediately if playing
+  engine._stopSlotSample(charId);
   delete state.assignments[charId];
   delete engine.activeSlots[charId];
   markIconAssigned(soundId, false);
