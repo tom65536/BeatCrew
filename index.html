@@ -133,14 +133,16 @@ header {
   pointer-events: none;
 }
 
-#disco-ball {
+#disco-ball-canvas {
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 56px;
-  height: 56px;
+  width: 70px;
+  height: 84px;
   pointer-events: none;
+  z-index: 4;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45)) drop-shadow(0 0 24px rgba(124, 58, 237, 0.35));
 }
 
 #stage-lights {
@@ -364,13 +366,8 @@ header {
   <div id="stage-wrap">
     <canvas id="bg-canvas2" style="position:absolute;inset:0;pointer-events:none;z-index:0;width:100%;height:100%"></canvas>
     <div id="stage-lights"></div>
-    <!-- Disco Ball SVG -->
-    <svg id="disco-ball" viewBox="0 0 60 70">
-      <line x1="30" y1="0" x2="30" y2="10" stroke="#888" stroke-width="2"/>
-      <circle cx="30" cy="38" r="22" fill="#222" stroke="#888" stroke-width="1.5"/>
-      <!-- facets -->
-      <g id="disco-facets"></g>
-    </svg>
+    <!-- 3D Disco Ball Canvas -->
+    <canvas id="disco-ball-canvas" width="100" height="120"></canvas>
     <div id="characters"></div>
     <div id="fog"></div>
   </div>
@@ -1395,30 +1392,197 @@ function buildStageLights() {
   }
 }
 
-/* --- Disco ball facets --- */
+/* --- 3D Spherical Disco Ball Canvas --- */
 function buildDiscoBall() {
-  const g = document.getElementById('disco-facets');
-  const rows=6, cols=8;
-  for(let r=0;r<rows;r++) {
-    for(let c=0;c<cols;c++) {
-      const angle = (c/cols)*360;
-      const y     = 18 + r*4;
-      const hue   = (r*60+c*45)%360;
-      const rect  = document.createElementNS('http://www.w3.org/2000/svg','rect');
-      rect.setAttribute('x', 8 + c*5.5);
-      rect.setAttribute('y', y);
-      rect.setAttribute('width', 4.5);
-      rect.setAttribute('height', 3.5);
-      rect.setAttribute('rx', 0.5);
-      rect.setAttribute('fill', `hsl(${hue},80%,70%)`);
-      rect.setAttribute('transform', `rotate(${angle},30,38)`);
-      g.appendChild(rect);
-    }
+  const canvas = document.getElementById('disco-ball-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+  const cx = W / 2;
+  const cy = 64;
+  const R = 35;
+
+  const latBands = 13; // Horizontal mirror rows
+  const lonBands = 22; // Mirror facets per row
+  let rotation = 0;
+
+  // Star sparkle helper for specular glints
+  function drawSparkle(x, y, size, alpha) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#ffffff';
+
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.quadraticCurveTo(0, 0, size, 0);
+    ctx.quadraticCurveTo(0, 0, 0, size);
+    ctx.quadraticCurveTo(0, 0, -size, 0);
+    ctx.quadraticCurveTo(0, 0, 0, -size);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.35, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
   }
-  // animate spin
-  const ball = document.getElementById('disco-ball');
-  let ang=0;
-  setInterval(()=>{ ang+=0.3; ball.style.transform=`translateX(-50%) rotate(${ang}deg)`; },30);
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+
+    // 1. Hanging wire and metal mounting cap
+    ctx.save();
+    const wireGrad = ctx.createLinearGradient(cx - 1, 0, cx + 1, 0);
+    wireGrad.addColorStop(0, '#555566');
+    wireGrad.addColorStop(0.5, '#ddddf0');
+    wireGrad.addColorStop(1, '#444455');
+    ctx.fillStyle = wireGrad;
+    ctx.fillRect(cx - 1, 0, 2, cy - R + 2);
+
+    // Chain link texture
+    ctx.strokeStyle = '#9999aa';
+    ctx.lineWidth = 1;
+    for (let y = 3; y < cy - R; y += 6) {
+      ctx.beginPath();
+      ctx.ellipse(cx, y, 1.8, 3, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Top metal mount / collar
+    const capGrad = ctx.createLinearGradient(cx - 6, cy - R, cx + 6, cy - R + 6);
+    capGrad.addColorStop(0, '#9999aa');
+    capGrad.addColorStop(0.5, '#ffffff');
+    capGrad.addColorStop(1, '#555566');
+    ctx.fillStyle = capGrad;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - R + 2, 6, 3, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // 2. Base sphere core (solid dark backing so no gaps show through)
+    ctx.save();
+    const coreGrad = ctx.createRadialGradient(cx - 8, cy - 10, 4, cx, cy, R);
+    coreGrad.addColorStop(0, '#262638');
+    coreGrad.addColorStop(0.75, '#12121c');
+    coreGrad.addColorStop(1, '#090910');
+    ctx.fillStyle = coreGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R - 0.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // 3. 3D Spherical Mirror Facets
+    const sparkles = [];
+    const light1 = { x: -0.4, y: -0.6, z: 0.7 }; // Key stage light
+    const light2 = { x: 0.5, y: -0.4, z: 0.75 }; // Fill light
+
+    for (let lat = 0; lat < latBands; lat++) {
+      const phi1 = -Math.PI / 2 + (lat + 0.6) * (Math.PI / (latBands + 1.2));
+      const phi2 = -Math.PI / 2 + (lat + 1.6) * (Math.PI / (latBands + 1.2));
+
+      const r1 = Math.cos(phi1) * R;
+      const y1 = cy + Math.sin(phi1) * R;
+      const r2 = Math.cos(phi2) * R;
+      const y2 = cy + Math.sin(phi2) * R;
+
+      for (let lon = 0; lon < lonBands; lon++) {
+        const theta1 = (lon / lonBands) * Math.PI * 2 + rotation;
+        const theta2 = ((lon + 1) / lonBands) * Math.PI * 2 + rotation;
+
+        const midPhi = (phi1 + phi2) * 0.5;
+        const midTheta = (theta1 + theta2) * 0.5;
+
+        // Surface normal
+        const nx = Math.cos(midPhi) * Math.sin(midTheta);
+        const ny = Math.sin(midPhi);
+        const nz = Math.cos(midPhi) * Math.cos(midTheta);
+
+        // Backface culling: only front-facing tiles
+        if (nz <= -0.05) continue;
+
+        // 4 corner points in screen space
+        const x1 = cx + r1 * Math.sin(theta1);
+        const x2 = cx + r1 * Math.sin(theta2);
+        const x3 = cx + r2 * Math.sin(theta2);
+        const x4 = cx + r2 * Math.sin(theta1);
+
+        // Lighting & Specular reflection
+        const diffuse = Math.max(0.2, nz);
+
+        const dot1 = nx * light1.x + ny * light1.y + nz * light1.z;
+        const spec1 = Math.max(0, 2 * dot1 * nz - light1.z);
+        const specPow1 = Math.pow(spec1, 12);
+
+        const dot2 = nx * light2.x + ny * light2.y + nz * light2.z;
+        const spec2 = Math.max(0, 2 * dot2 * nz - light2.z);
+        const specPow2 = Math.pow(spec2, 10);
+
+        // Mirror color with subtle iridescent reflection shifts
+        const hueShift = (lat * 33 + lon * 25 + rotation * 60) % 360;
+        const baseShade = Math.round(90 + diffuse * 125);
+        const specTotal = specPow1 * 180 + specPow2 * 120;
+
+        let red = Math.min(255, baseShade + specTotal);
+        let green = Math.min(255, baseShade + specTotal);
+        let blue = Math.min(255, Math.round(baseShade * 1.08) + specTotal);
+
+        if (nz < 0.6) {
+          const tint = (1 - nz / 0.6) * 45;
+          red = Math.min(255, red + Math.sin(hueShift * Math.PI / 180) * tint);
+          green = Math.min(255, green + Math.cos(hueShift * Math.PI / 180) * tint);
+          blue = Math.min(255, blue + 25);
+        }
+
+        // Draw quad facet
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y1);
+        ctx.lineTo(x3, y2);
+        ctx.lineTo(x4, y2);
+        ctx.closePath();
+
+        ctx.fillStyle = `rgb(${Math.round(red)},${Math.round(green)},${Math.round(blue)})`;
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(10, 10, 20, 0.55)';
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+
+        // Highlight glints
+        if (specPow1 > 0.68 && nz > 0.4) {
+          sparkles.push({
+            x: (x1 + x2 + x3 + x4) * 0.25,
+            y: (y1 + y1 + y2 + y2) * 0.25,
+            size: 4 + specPow1 * 5,
+            alpha: Math.min(1, specPow1 * 1.1)
+          });
+        }
+      }
+    }
+
+    // 4. Volume Shading (Vignette & Rim shadow)
+    ctx.save();
+    const sphereShade = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
+    sphereShade.addColorStop(0, 'rgba(255, 255, 255, 0.22)');
+    sphereShade.addColorStop(0.55, 'rgba(255, 255, 255, 0)');
+    sphereShade.addColorStop(0.85, 'rgba(10, 10, 30, 0.2)');
+    sphereShade.addColorStop(1, 'rgba(0, 0, 15, 0.65)');
+    ctx.fillStyle = sphereShade;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // 5. Specular Sparkles / Star Flares
+    sparkles.forEach(s => drawSparkle(s.x, s.y, s.size, s.alpha));
+
+    // Smooth rotation speed (~1 full spin every 9-10 seconds)
+    rotation += 0.009;
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 }
 
 /* --- Characters (Manga 70s Disco Style) --- */
