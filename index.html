@@ -482,31 +482,49 @@ class AudioEngine {
     this.onBeat       = null; // callback(beat, time)
     this.initialized  = false;
     this.sampleBuffers= {};   // soundId -> AudioBuffer (loaded external audio assets)
-    this.sampleLoadAttempted = new Set();
+    this.sampleLoading= new Map(); // soundId -> Promise<AudioBuffer|null> (in-flight fetch & decode)
+    this.sampleNotFound = new Set(); // soundId where no external file (.mp3/.wav/.ogg) exists
     this.activeSourceNodes = {}; // charId -> AudioBufferSourceNode (currently playing sample instance)
   }
 
   // Pre-load an external audio sample from /sounds/ folder (.mp3 / .wav / .ogg)
-  async loadSample(sound) {
-    if (this.sampleBuffers[sound.id] || this.sampleLoadAttempted.has(sound.id)) return;
-    this.sampleLoadAttempted.add(sound.id);
-
-    const extensions = ['mp3', 'wav', 'ogg'];
-    for (const ext of extensions) {
-      const url = `sounds/${sound.file}.${ext}`;
-      try {
-        const res = await fetch(url);
-        if (res.ok) {
-          const arrayBuf = await res.arrayBuffer();
-          const audioBuf = await this.ctx.decodeAudioData(arrayBuf);
-          this.sampleBuffers[sound.id] = audioBuf;
-          console.log(`🎵 [BeatCrew] Loaded sample for ${sound.name}: ${url} (length: ${audioBuf.duration.toFixed(2)}s)`);
-          return;
-        }
-      } catch (err) {
-        // Fallback continues to next format or internal synth
-      }
+  loadSample(sound) {
+    if (!sound) return Promise.resolve(null);
+    if (this.sampleBuffers[sound.id]) {
+      return Promise.resolve(this.sampleBuffers[sound.id]);
     }
+    if (this.sampleLoading.has(sound.id)) {
+      return this.sampleLoading.get(sound.id);
+    }
+    if (this.sampleNotFound.has(sound.id)) {
+      return Promise.resolve(null);
+    }
+
+    const promise = (async () => {
+      const extensions = ['mp3', 'wav', 'ogg'];
+      for (const ext of extensions) {
+        const url = `sounds/${sound.file}.${ext}`;
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            const arrayBuf = await res.arrayBuffer();
+            const audioBuf = await this.ctx.decodeAudioData(arrayBuf);
+            this.sampleBuffers[sound.id] = audioBuf;
+            this.sampleLoading.delete(sound.id);
+            console.log(`🎵 [BeatCrew] Loaded sample for ${sound.name}: ${url} (length: ${audioBuf.duration.toFixed(2)}s)`);
+            return audioBuf;
+          }
+        } catch (err) {
+          // Fallback continues to next format
+        }
+      }
+      this.sampleNotFound.add(sound.id);
+      this.sampleLoading.delete(sound.id);
+      return null;
+    })();
+
+    this.sampleLoading.set(sound.id, promise);
+    return promise;
   }
 
   // Stop currently playing sample node for a specific character slot
@@ -634,6 +652,9 @@ class AudioEngine {
     this._hardClipCurve = this._makeSoftClip(8);
 
     this.initialized = true;
+
+    // Preload all available sample assets in background as soon as audio context is ready
+    SOUNDS.forEach(s => this.loadSample(s));
   }
 
   _makeSoftClip(amount) {
@@ -722,16 +743,26 @@ class AudioEngine {
   }
 
   _playSound(sound, charId, beat, bar, t) {
-    // If an external sample asset exists for this sound, play it with 0% synth CPU overhead
+    // 1. If an external sample asset exists for this sound, play it with 0% synth CPU overhead
     if (this.sampleBuffers[sound.id]) {
       this._playSampleNode(sound, charId, beat, bar, t);
       return;
     }
-    // Asynchronous background attempt to fetch sample if not tried yet
-    if (!this.sampleLoadAttempted.has(sound.id)) {
-      this.loadSample(sound);
+
+    // 2. If the sample is still currently loading in the background:
+    // DO NOT trigger the procedural synth! This eliminates the glitch where a synthetic burst
+    // is heard before the MP3/WAV sample starts playing.
+    if (this.sampleLoading.has(sound.id)) {
+      return;
     }
-    // High-performance procedural fallback
+
+    // 3. If we haven't checked for an external sample file yet, trigger loading now and wait
+    if (!this.sampleNotFound.has(sound.id)) {
+      this.loadSample(sound);
+      return;
+    }
+
+    // 4. Only if we know for sure that no external sample file exists: use procedural fallback
     const f = this[sound.synth];
     if (f) f.call(this, beat, bar, t);
   }
@@ -1981,6 +2012,17 @@ function assignSound(charId, soundId) {
   }
   state.assignments[charId] = soundId;
   engine.activeSlots[charId] = soundId;
+
+  // Immediately ensure sample is loading or loaded in background
+  const soundObj = SOUNDS.find(item => item.id === soundId);
+  if (soundObj) {
+    if (engine.initialized) {
+      engine.loadSample(soundObj);
+    } else {
+      engine.init().then(() => engine.loadSample(soundObj));
+    }
+  }
+
   markIconAssigned(soundId, true);
   renderAccessory(charId, soundId);
   activateChar(charId, true);
@@ -2067,11 +2109,12 @@ async function startPlayback() {
   await engine.init();
   if (engine.ctx.state === 'suspended') await engine.ctx.resume();
 
-  // Pre-load all samples for active sounds in background
-  Object.values(state.assignments).forEach(sid => {
+  // Ensure all samples for currently assigned characters are 100% loaded and decoded BEFORE playback begins
+  const pending = Object.values(state.assignments).map(sid => {
     const s = SOUNDS.find(item => item.id === sid);
-    if (s) engine.loadSample(s);
+    return s ? engine.loadSample(s) : null;
   });
+  await Promise.all(pending);
 
   engine.start();
   state.playing = true;
@@ -2400,6 +2443,13 @@ engine.onBeat = (beat, t) => {
 };
 
 // BPM display removed
+
+// Eagerly initialize AudioEngine and start preloading all sound assets on first user interaction
+window.addEventListener('pointerdown', () => {
+  if (!engine.initialized) {
+    engine.init();
+  }
+}, { once: true });
 
 console.log('🎵 BeatCrew ready! Drag sounds onto your crew!');
 </script>
