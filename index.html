@@ -501,7 +501,7 @@ class AudioEngine {
     }
 
     const promise = (async () => {
-      const extensions = ['mp3', 'wav', 'ogg'];
+      const extensions = ['wav', 'mp3', 'ogg'];
       for (const ext of extensions) {
         const url = `sounds/${sound.file}.${ext}`;
         try {

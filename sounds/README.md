@@ -11,7 +11,7 @@ Sobald eine Datei hier mit dem passenden Namen existiert, schaltet BeatCrew auto
 * **Länge:**
   * **1 Takt (4 Beats):** genau **2,000 Sekunden**
   * **4 Takte (16 Beats):** genau **8,000 Sekunden**
-* **Formate:** `.mp3`, `.wav` oder `.ogg` (alle drei werden automatisch erkannt)
+* **Formate:** `.wav`, `.mp3` oder `.ogg` (Empfehlung für nahtlose Loops ohne MP3-Encoder-Latenz: **`.wav`**)
 
 ---
 
